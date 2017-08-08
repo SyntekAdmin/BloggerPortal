@@ -1,0 +1,323 @@
+﻿
+<script language="javascript" src="~/Scripts/app/Common.js"></script>
+<script language="javascript" src="~/Scripts/app/items/MyItemView_Biz.js"></script>
+<script language="javascript" src="~/Scripts/app/Pager.js"></script>
+<script language="javascript" src="~/Scripts/app/items/MyItemView_Ctrl.js"></script>
+
+<script language="javascript">
+    var o_adminSeq = "@ViewBag.AdminSeq";
+    var o_productNo = "@ViewBag.ProductNo";
+    var o_skuNo = "@ViewBag.SkuNo";
+    var o_userSeq = "@ViewBag.UserSeq";
+    $(".loading").show();
+</script>
+
+
+<!-- Right Side S -->
+<div id="PhotosOfInfListController" ng-controller="PhotosOfInfListController" class="col_s_10_of_10 col_m_9_of_12 col_l_13_of_16">
+    <div class="nav_top_container txcl nav_content_title">
+        <h1>ITEM LIST</h1>
+    </div>
+    <!-- Cotent S -->
+    <div class="container row pt_10 pb_20">
+        <!-- History Back S -->
+        <div class="container pt_5 pb_10 hide_mobile">
+            <div class="txl t_small t_bold">
+                <span class="p_prev"></span>
+                <a ng-href="/admin/items">BACK TO THE LIST</a>
+            </div>
+        </div>
+        <!-- History Back E -->
+        <!--  Item Grid S -->
+        <div class="p_list hide_mobile">
+            <!-- Item S -->
+            <div>
+                <div class="b_gray pa_10 clearfix">
+                    <!-- Item Image S -->
+                    <div class="col_s_3_of_10 col_m_3_of_12 col_l_3_of_16">
+                        <div class="tag_container round_tag_rb t_white t_bold bg_pink picked " ng-class="{'ng-hide': meal_detail.PICKED_STATUS !== 'Picked'}" ng-hide="{{meal_detail.PICKED_STATUS !== 'Picked'}}">
+                            <span class="t_small">PICKED</span>
+                        </div>
+                        <a>
+                            <img ng-src="{{ meal_detail.PICKED_STATUS !== 'Picked' && meal_detail.PRODUCT_IMAGE || '/admin/items/viewer/' + meal_detail.Photos[0].PHOTO_URL }}" src="/resource/images/c_loading.gif">
+                        </a>
+                    </div>
+                    <!-- Item Image E -->
+                    <!-- Item Info S -->
+                    <div class="col_s_7_of_10 col_m_9_of_12 col_l_13_of_16">
+                        <div class="pt_10 pl_10 pr_10">
+                            <p class="pb_5 t_bold " ng-bind="meal_detail.PRODUCT_NM"></p>
+                            <p class="pb_10 t_gray" ng-bind="meal_detail.SKU_NM"></p>
+                            <table>
+                                <tbody>
+                                    <tr>
+                                        <td class="pa_0">
+                                            <p class="t_bold">
+                                                <span class="col_s_1_of_10">
+                                                    <span class="col_s_10_of_10">
+                                                        <img ng-src="{{meal_detail.ADMIN_PHOTO_URL}}" src="/resource/images/c_loading.gif">
+                                                    </span>
+                                                </span>
+                                                <span class="t_bold t_pink" ng-bind="meal_detail.ADMIN_NM"></span>
+                                            </p>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <!-- Item Info E -->
+                    <!-- Item Flow S -->
+                    <div class="col_s_10_of_10 col_m_9_of_12 col_l_13_of_16 t_small flow_tab">
+                        <div class="tab_wrap pt_10">
+                            <ul class="flow three_up tablayer">
+                                <li ng-class="{active: meal_detail.PICKED_STATUS === 'Select'}"><a href="#"><span>Influencers<i class="icon_check"></i></span></a></li>
+                                <li ng-class="{active: meal_detail.PICKED_STATUS === 'Reviewing'}"><a href="#"><span>Upload Date<i class="icon_check"></i></span></a></li>
+                                <li ng-class="{active: meal_detail.PICKED_STATUS === 'Picked'}"><a href="#"><span>Pick a Photo<i class="icon_check"></i></span></a></li>
+                            </ul>
+                        </div>
+                        <div class="tab_container pt_10 clearfix">
+                            <div class="tab_content" ng-class="{active: meal_detail.PICKED_STATUS === 'Select'}">
+                                <table class="ws_100 t_mid">
+                                    <tbody>
+                                        <tr>
+                                            <td class="txc">
+                                                <span class="underline"><em ng-bind="meal_detail.INF_CNT">0</em> influencers</span>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="tab_content" ng-class="{active: meal_detail.PICKED_STATUS === 'Reviewing'}">
+                                <table class="ws_100 t_mid">
+                                    <colgroup><col class="col_s_4_of_10"></colgroup>
+                                    <tbody>
+                                        <tr>
+                                            <th>First Upload</th>
+                                            <td ng-bind="meal_detail.FIRST_UPLOAD_STR"></td>
+                                        </tr>
+                                        <tr class="bt_gray">
+                                            <th>Last Upload</th>
+                                            <td ng-bind="meal_detail.LAST_UPLOAD_STR"></td>
+                                        </tr>
+                                        <tr class="bt_gray">
+                                            <th>Total Photos</th>
+                                            <td><span ng-bind="meal_detail.PHOTO_CNT">0</span> EA<span class="pl_10 qv_slide"><span class="underline t_red cursor" ng-click="fnGetViewAll(meal_detail.PRODUCT_NM, meal_detail.SKU_NM)">View All</span></span></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="tab_content" ng-class="{active: meal_detail.PICKED_STATUS === 'Picked'}">
+                                <table class="ws_100 t_mid">
+                                    <colgroup><col class="col_s_4_of_10 col_m_4_of_12 col_l_9_of_16"></colgroup>
+                                    <tbody>
+                                        <tr>
+                                            <th>Status</th>
+                                            <td>
+                                                <div class="select_container">
+                                                    <div class="checkout show_mobile">
+                                                        <select id="status" ng-model="meal_detail.PICKED_STATUS" ng-change="fnSelectChange(this)" class="pa_0">
+                                                            <option ng-repeat="option in options" ng-value="option.value" ng-bind="option.text" ng-selected="meal_detail.PICKED_STATUS === option.value"></option>
+                                                        </select>
+                                                    </div>
+                                                    <div class="col_m_12_of_12 col_l_16_of_16 txl hide_mobile">
+                                                        <span class="drop_p" list-option-class>
+                                                            <span id="status_drop" class="s_dropdown arrow_down"><label><a ng-class="{'t_pink': meal_detail.PICKED_STATUS === 'Picked'}" ng-bind="meal_detail.PICKED_STATUS"></a></label></span>
+                                                        </span>
+                                                        <div class="drop_c b_gray" ng-class="{'display:none':  meal_detail.PICKED_STATUS !== 'Picked'}">
+                                                            <dl>
+                                                                <dd ng-repeat="option in options" ng-click="fnSelectDropChange(option.value, this)"><span ng-class="{'selected t_pink': meal_detail.PICKED_STATUS === option.value}" ng-bind="option.text">Select</span></dd>
+                                                            </dl>
+                                                        </div>
+                                                    </div>
+                                                    <input type="hidden" id="pickedStatus" name="pickedStatus" ng-value="meal_detail.PICKED_STATUS" />
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr class="bt_gray">
+                                            <th>Picked influencers</th>
+                                            <td ng-bind="meal_detail.PICKED_USER_NM"></td>
+                                        </tr>
+                                        <tr class="bt_gray">
+                                            <th>Status Change</th>
+                                            <td ng-bind="meal_detail.PICKED_DATE_STR"></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Item Flow E -->
+                </div>
+            </div>
+            <!-- Item E -->
+        </div>
+        <!--  Item Grid E -->
+        <!-- History Back S -->
+        <div class="container pt_5 pb_10">
+            <div class="txl t_small t_bold ">
+                <span class="p_prev"></span>
+                <a ng-href="/admin/items/viewall/@ViewBag.AdminSeq/@ViewBag.ProductNo/@ViewBag.SkuNo">VIEW ALL INFLUENCERS PHOTOS</a>
+            </div>
+        </div>
+        <!-- History Back E -->
+        <!--  Item Grid S -->
+        <div class="p_detail">
+            <!-- Item S -->
+            <div>
+                <div class="clearfix">
+                    <!-- Item Image S -->
+                    <div class="col_s_10_of_10 col_m_3_of_12 col_l_4_of_16 t_small">
+                        @*<div class="tag_container round_tag_rb t_white t_bold bg_blue2" ng-class="{'ng-hide': meals.RETOUCHED_STATUS !== 'Retouched'}" ng-hide="{{meal.RETOUCHED_STATUS !== 'Retouched'}}">
+                            <span class="t_small">RETOU-<br>CHED</span>
+                        </div>*@
+                        <div class="tag_container round_tag_rb t_white t_bold bg_blue2" ng-if="meals.PICKED_USER_SEQ == @ViewBag.UserSeq && meals.RETOUCHED_STATUS === 'Retouched'">
+                            <span class="t_small">RETOU-<br>CHED</span>
+                        </div>
+                        <div class="tag_container round_tag_rb t_white t_bold bg_pink picked " ng-if="meals.PICKED_USER_SEQ == @ViewBag.UserSeq && meals.RETOUCHED_STATUS !== 'Retouched' && meal_detail.PICKED_STATUS === 'Picked'">
+                            <span class="t_small">PICKED</span>
+                        </div>
+                        <div ng-else></div>
+                        <a>
+                            <img ng-src="{{ (meals.PICKED_USER_SEQ != @ViewBag.UserSeq || meals.PICKED_STATUS !== 'Picked') ? meal_detail.PRODUCT_IMAGE : '/admin/items/viewer/' + meals.PICKED_PHOTO_URL }}" src="/resource/images/c_loading.gif">
+                        </a>
+                    </div>
+                    <!-- Item Image E -->
+                    <div class="col_s_10_of_10 col_m_9_of_12">
+                        <div class="clearfix b_gray">
+                            <!-- Item Info S -->
+                            <div class="col_s_10_of_10 t_small">
+                                <div class="pt_10 pl_10 pr_10">
+                                    <p class="pb_10 t_bold t_black" ng-bind="meals.INSTAGRAM_ID"></p>
+                                    <p class="pb_10 t_gray">Uploaded Date : <span ng-bind="meals.UPLOAD_DATE_STR"></span></p>
+                                    <p class="pb_20 t_gray">Total Photos : <span ng-bind="meals.PHOTO_CNT">0</span></p>
+                                    <div class="pb_20 clearfix">
+                                        <span class="vm">
+                                            <span class="icon_download p_relative fc" ng-if="meals.PICKED_USER_SEQ != @ViewBag.UserSeq || meals.PICKED_STATUS !== 'Picked'"></span>
+                                            <span class="icon_download p_relative fc" ng-if="meals.PICKED_USER_SEQ == @ViewBag.UserSeq && meals.PICKED_STATUS === 'Picked'" ng-click="download(this)"></span>
+                                        </span>
+                                        <span class="vm pl_10">
+                                            <span class="icon_reupload p_relative fc cursor" onclick="file.click()" ng-if="meals.PICKED_USER_SEQ != @ViewBag.UserSeq || meals.PICKED_STATUS !== 'Picked'"></span>
+                                            <span class="icon_reupload p_relative fc cursor" onclick="file.click()" ng-if="meals.PICKED_USER_SEQ == @ViewBag.UserSeq && meals.PICKED_STATUS === 'Picked'">
+                                                <input type="file" id="file" name="file" onchange="angular.element(this).scope().ImmediatelyUploadFile(this)" accept="image/*" style="display:none;" />
+                                                <input type="hidden" id="adminSeq" name="adminSeq" ng-value="@ViewBag.AdminSeq" />
+                                                <input type="hidden" id="photoSeq" name="photoSeq" ng-value="meals.PICKED_PHOTO_SEQ" />
+                                            </span>
+                                        </span>
+                                        <span class="vm pl_10 t_bold" ng-if="meals.RETOUCHED_STATUS === 'Retouched'">Retouched &nbsp; Uploaded : <span ng-bind="meals.PICKED_RETOUCHED_DATE_STR"></span></span>
+                                    </div>
+                                    <table>
+                                        <tbody>
+                                            <tr>
+                                                <td class="pa_0">
+                                                    <p class="t_bold">
+                                                        <span class="col_s_1_of_10">
+                                                            <span class="col_s_10_of_10">
+                                                                <img ng-src="{{meal_detail.ADMIN_PHOTO_URL}}" src="/resource/images/c_loading.gif">
+                                                            </span>
+                                                        </span>
+                                                        <span class="t_bold t_pink" ng-bind="meal_detail.ADMIN_NM"></span>
+                                                    </p>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <!-- Item Info E -->
+                            <!-- Item Flow S -->
+                            <div class="col_s_10_of_10 t_small flow_tab">
+                                <div class="tab_wrap pt_10">
+                                    <ul class="row_3 flow three_up tablayer">
+                                        <li class="active"><a href="#"><span>Order/Shipped<i class="icon_check"></i></span></a></li>
+                                        <li><a href="#"><span>Upload Photos<i class="icon_check"></i></span></a></li>
+                                        <li><a href="#"><span>Instagram Post URL<i class="icon_check"></i></span></a></li>
+                                    </ul>
+                                </div>
+                                <div class="tab_container pt_10 clearfix">
+                                    <div class="tab_content active">
+                                        <table class="ws_100 t_mid">
+                                            <colgroup><col class="col_s_4_of_10"></colgroup>
+                                            <tbody>
+                                                <tr>
+                                                    <th>Order Date</th>
+                                                    <td ng-bind="meals.ORDER_DATE_STR"></td>
+                                                </tr>
+                                                <tr class="bt_gray">
+                                                    <th>Shipped Date</th>
+                                                    <td ng-bind="meals.SHIPPED_DATE_STR"></td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div class="tab_content">
+                                        <table class="ws_100 t_mid">
+                                            <colgroup><col class="col_s_4_of_10"></colgroup>
+                                            <tbody>
+                                                <tr>
+                                                    <th>Upload Date</th>
+                                                    <td ng-bind="meals.UPLOAD_DATE_STR"></td>
+                                                </tr>
+                                                <tr class="bt_gray">
+                                                    <th>Photos</th>
+                                                    <td><span ng-bind="meals.PHOTO_CNT">0</span> photos</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div class="tab_content">
+                                        <table class="ws_100 t_mid">
+                                            <tbody>
+                                                <tr>
+                                                    <td class="txc">
+                                                        <a href="{{meals.POST_LINK}}" target="_blank"><span class="underline" ng-bind="meals.POST_LINK"></span></a>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Item Flow E -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Item E -->
+        </div>
+        <!--  Item Grid E -->
+        <!-- Item Each Photo Grid S -->
+        <div class="container thumb_list">
+            <div class="row_5 clearfix">
+                <!-- Item S -->
+                <div class="pi_wrapper" ng-repeat="photo in meals.Photos" my-repeat-directive>
+                    <div class="p_item">
+                        <div class="tag_container round_tag_rb t_white t_bold bg_pink picked" style="display:none;">
+                            <span class="t_small">PICKED</span>
+                        </div>
+                        <p><img ng-src="{{'/admin/items/viewer/' + photo.PHOTO_URL}}" src="/resource/images/c_loading.gif" /></p>
+                    </div>
+                    <div class="txc">
+                        <span class="pr_10"><input type="checkbox" id="p_detail01" name="preference" ng-checked="{{photo.PICKED_STATUS === 'Picked'}}" disabled='disabled'/><label for="p_detail01"></label>Select</span>
+                    </div>
+                </div>
+                <!-- Item E -->
+            </div>
+        </div>
+        <!-- Item Each Photo Grid E -->
+    </div>
+    <!-- Cotent E -->
+</div>
+<!-- Right Side E -->
+
+<!-- FILE DOWNLOAD S -->
+<iframe id="ifrmDownload" name="ifrmDownload" src="" style="display:none;"></iframe>
+<!-- FILE DOWNLOAD E -->
+
+<script language="javascript">
+    $(document).ready(function () {
+        // 좌측 메뉴 Active
+        //$("#m_item").addClass('active');
+        fnActiveMenu("m_item", "Item List");
+    });
+</script>

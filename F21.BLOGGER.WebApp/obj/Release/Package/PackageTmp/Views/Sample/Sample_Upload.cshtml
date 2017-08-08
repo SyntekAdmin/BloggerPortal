@@ -1,0 +1,295 @@
+﻿
+@{
+    ViewBag.Title = "Sample_Upload";
+    Layout = "~/Views/Shared/_Layout_Sample.cshtml";
+}
+
+<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+
+<h2>Sample_Upload</h2>
+
+
+
+<script language="javascript">
+
+</script>
+
+<div class="col-md-12">
+    <h2>Image/File Upload With Angular::</h2>
+</div>
+
+<div ng-controller="ImageUploadMultipleCtrl">
+
+    <div class="col-md-12" style="text-align:center;margin-bottom:10px;">
+        <!--<input type="file" id="file" name="file" multiple onchange="angular.element(this).scope().setFile(this)" accept="image/*" class="btn btn-warning" />-->
+        <input type="file" id="file" name="file" onchange="angular.element(this).scope().ImmediatelyUploadFile(this)" accept="image/*" class="btn btn-warning" />
+    </div>
+    <div class="col-md-12">
+        <button ng-click="UploadFile()" class="btn btn-primary">Upload File</button>
+    </div>
+
+    <div class="col-md-12" style="padding-top:10px;">
+
+        <div class="col-md-7">
+            <table class="table table-bordered table-striped">
+                <thead>
+                    <tr>
+                        <th>File Name</th>
+                        <th>File Type</th>
+                        <th>File Size</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="file in fileList">
+
+                        <td>{{file.file.name}}</td>
+                        <td>{{file.file.type}}</td>
+                        <td>{{file.file.size}}</td>
+                        <td>
+                            <div id="{{'P'+$index}}">
+
+                            </div>
+                        </td>
+
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+
+
+<script language="javascript">
+    var app = angular.module('forever21App', []);
+    app.controller('ImageUploadMultipleCtrl', function ($scope) {
+
+        $scope.fileList = [];
+        $scope.curFile;
+        $scope.ImageProperty = {
+            file: ''
+        }
+
+        $scope.ImmediatelyUploadFile = function (element) {
+            $scope.fileList = [];
+            // get the files
+            var files = element.files;
+            for (var i = 0; i < files.length; i++) {
+                $scope.UploadFileIndividual(files[i],
+                    files[i].name,
+                    files[i].type,
+                    files[i].size,
+                    i);
+                $scope.ImageProperty.file = files[i];
+
+                $scope.fileList.push($scope.ImageProperty);
+                $scope.ImageProperty = {};
+                $scope.$apply();
+            }
+        }
+
+        $scope.setFile = function (element) {
+            $scope.fileList = [];
+            // get the files
+            var files = element.files;
+            for (var i = 0; i < files.length; i++) {
+                $scope.ImageProperty.file = files[i];
+
+                $scope.fileList.push($scope.ImageProperty);
+                $scope.ImageProperty = {};
+                $scope.$apply();
+
+            }
+        }
+
+        $scope.UploadFile = function () {
+            for (var i = 0; i < $scope.fileList.length; i++) {
+
+                $scope.UploadFileIndividual($scope.fileList[i].file,
+                    $scope.fileList[i].file.name,
+                    $scope.fileList[i].file.type,
+                    $scope.fileList[i].file.size,
+                    i);
+            }
+
+        }
+
+        $scope.UploadFileIndividual = function (fileToUpload, name, type, size, index) {
+            //Create XMLHttpRequest Object
+            var reqObj = new XMLHttpRequest();
+
+            //event Handler
+            reqObj.upload.addEventListener("progress", uploadProgress, false)
+            reqObj.addEventListener("load", uploadComplete, false)
+            reqObj.addEventListener("error", uploadFailed, false)
+            reqObj.addEventListener("abort", uploadCanceled, false)
+
+
+            //open the object and set method of call(get/post), url to call, isasynchronous(true/False)
+            reqObj.open("POST", "/api/upload/image", true);
+
+            //set Content-Type at request header.For file upload it's value must be multipart/form-data
+            reqObj.setRequestHeader("Content-Type", "multipart/form-data");
+
+            //Set Other header like file name,size and type
+            reqObj.setRequestHeader('X-File-Name', name);
+            reqObj.setRequestHeader('X-File-Type', type);
+            reqObj.setRequestHeader('X-File-Size', size);
+
+
+            // send the file
+            reqObj.send(fileToUpload);
+
+            function uploadProgress(evt) {
+                if (document.getElementById('P' + index)) {
+                    if (evt.lengthComputable) {
+
+                        var uploadProgressCount = Math.round(evt.loaded * 100 / evt.total);
+
+                        document.getElementById('P' + index).innerHTML = uploadProgressCount;
+
+                        if (uploadProgressCount == 100) {
+                            document.getElementById('P' + index).innerHTML =
+                                '<i class="fa fa-refresh fa-spin" style="color:maroon;"></i>';
+                        }
+                    }
+                }
+            }
+
+            function uploadComplete(evt) {
+                /* This event is raised when the server  back a response */
+                if (document.getElementById('P' + index)) {
+                    document.getElementById('P' + index).innerHTML = 'Saved';
+                    $scope.NoOfFileSaved++;
+                    $scope.$apply();
+                }
+                else {
+                    alert("file upload complete!!!");
+                }
+            }
+
+            function uploadFailed(evt) {
+                document.getElementById('P' + index).innerHTML = 'Upload Failed..';
+            }
+
+            function uploadCanceled(evt) {
+
+                document.getElementById('P' + index).innerHTML = 'Canceled....';
+            }
+
+        }
+
+    });
+</script>
+
+
+
+@*<img src="https://www.dropbox.com/s/9uxqjz4qvuvlpe4/KakaoTalk_Photo_2016-05-05-22-22-36_10.jpg?dl=1" />
+
+    <link href="~/Content/OwlCarousel/owl.carousel.css" rel="stylesheet" />
+    <link href="~/Content/OwlCarousel/owl.theme.css" rel="stylesheet" />
+    <link href="~/Content/OwlCarousel/owl.transitions.css" rel="stylesheet" />
+    <script src="~/Scripts/owl.carousel.js"></script>
+
+    <!-- Set up your HTML -->
+    <style>
+        .c_owl {
+            height: auto;
+            width: 100%;
+            margin: 0;
+        }
+
+        .owl-carousel {
+            position: relative;
+            height: auto;
+            width:100%;
+        }
+
+        .owl-slide > img {
+            width: 100%;
+            height: 100%;
+        }
+        .owl-controls {
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+        }
+        .owl-prev {
+            left: 1em;
+            position: absolute;
+            background: url(https://www.forever21.com//gl/shop/_common/images/icon_prev.svg) no-repeat center center;
+            background-size: 100%;
+            color: transparent;
+            margin-left: 0;
+            width: 30%;
+            max-width: 50px;
+            opacity: .5;
+        }
+        .owl-next {
+            right: 1em;
+            position: absolute;
+            background: url(https://www.forever21.com//gl/shop/_common/images/icon_next.svg) no-repeat center center;
+            background-size: 100%;
+            color: transparent;
+            width: 30%;
+            max-width: 50px;
+            opacity: .5;
+        }
+    </style>
+    <div class="c_owl" style="width:30%">
+        <div class="custom-control">
+            <button data-slide="0" class="active">1</button>
+            <button data-slide="1">2</button>
+            <button data-slide="2">3</button>
+            <button data-slide="3">4</button>
+        </div>
+
+        <div id="owl-example" class="owl-carousel">
+            <div class="owl-slide">
+                <img src="https://www.forever21.com/images/1_front_750/00235454-08.jpg" />
+            </div>
+            <div class="owl-slide">
+                <img src="https://www.forever21.com/images/2_side_750/00235454-08.jpg" />
+            </div>
+            <div class="owl-slide">
+                <img src="https://www.forever21.com/images/3_back_750/00235454-08.jpg" />
+            </div>
+            <div class="owl-slide">
+                <img src="https://www.forever21.com/images/4_full_750/00235454-08.jpg" />
+            </div>
+        </div>
+    </div>
+
+
+
+    <script language="javascript">
+        var app = angular.module('forever21App', []);
+        $(document).ready(function () {
+            $("#owl-example").owlCarousel({
+                navigation: true,
+                slideSpeed: 300,
+                paginationSpeed: 400,
+                singleItem: true,
+                pagination: false,
+                rewindSpeed: 500,
+                afterMove: moved
+            });
+
+            $('.custom-control').on('click', 'button', function () {
+                var $this = $(this);
+                var slideNum = $(this).data('slide');
+                $("#owl-example").trigger('owl.goTo', slideNum);
+            });
+
+            function moved() {
+                var owl = $("#owl-example").data('owlCarousel');
+                var $buttons = $('.custom-control button');
+                $buttons.removeClass('active').removeAttr('disabled');
+                $('.custom-control').find('[data-slide="' + owl.currentItem + '"]').addClass('active').attr('disabled', 'disabled');
+            }
+
+        });
+    </script>
+*@

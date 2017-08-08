@@ -1,0 +1,7 @@
+D:\Projects\Syntek\Forever21\Influencer2\F21.BLOGGER.Service\F21.BLOGGER.Model\bin\Debug\F21.BLOGGER.Model.dll
+D:\Projects\Syntek\Forever21\Influencer2\F21.BLOGGER.Service\F21.BLOGGER.Model\bin\Debug\F21.BLOGGER.Model.pdb
+D:\Projects\Syntek\Forever21\Influencer2\F21.BLOGGER.Service\F21.BLOGGER.Model\bin\Debug\Newtonsoft.Json.dll
+D:\Projects\Syntek\Forever21\Influencer2\F21.BLOGGER.Service\F21.BLOGGER.Model\bin\Debug\Newtonsoft.Json.xml
+D:\Projects\Syntek\Forever21\Influencer2\F21.BLOGGER.Service\F21.BLOGGER.Model\obj\Debug\F21.BLOGGER.Model.dll
+D:\Projects\Syntek\Forever21\Influencer2\F21.BLOGGER.Service\F21.BLOGGER.Model\obj\Debug\F21.BLOGGER.Model.pdb
+D:\Projects\Syntek\Forever21\Influencer2\F21.BLOGGER.Service\F21.BLOGGER.Model\obj\Debug\F21.BLOGGER.Model.csprojResolveAssemblyReference.cache

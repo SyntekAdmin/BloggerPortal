@@ -1,0 +1,18 @@
+[
+  {
+    "_id": 1,
+    "user_name": "Hye Kim",
+    "address": "189 The Grove Dr <br/> Los Angeles <br/> CA 901036 <br/> United States",
+    "postal_code": "6266648468",
+    "is_default_shipping": false,
+    "is_default_billing": false
+  },
+  {
+    "_id": 2,
+    "user_name": "Joanne Kim",
+    "address": "3880 N. Mission Road Room #3090 <br/> Los Angeles <br/> CA 90031 <br/> United States",
+    "postal_code": "6266648468",
+    "is_default_shipping": true,
+    "is_default_billing": false
+  }
+]

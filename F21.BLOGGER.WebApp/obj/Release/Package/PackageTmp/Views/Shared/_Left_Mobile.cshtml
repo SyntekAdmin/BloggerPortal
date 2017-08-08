@@ -1,0 +1,72 @@
+﻿<!-- Mobile Left S -->
+<div class="l_container hide_desktop">
+    <div class="nav_primary">
+        <div class="col_s_10_of_10 mobile_myaccount show_both bb_gray">
+            <div class="col_s_7_of_10">
+                <a href="http://www.forever21.com">
+                    <span class="col_s_2_of_10"><img src="/resource/images/f21_circle_logo.png"></span>
+                    <span class="pl_10">Shop Now</span>
+                </a>
+            </div>
+        </div>
+        <div class="col_s_10_of_10 mobile_myaccount show_both">
+            <div class="col_s_7_of_10">
+                <a href="#">
+                    <span class="col_s_2_of_10"><img id="userPhotoLeftMo" src="@LoginUserPhotoUrl"></span>
+                    <span class="pl_10">Hello, <spna class="uppercase" id="userFirstNameLeftMo" name="userFirstNameLeftMo"></spna>@LoginUserFirstName</span>
+                </a>
+            </div>
+        </div>
+    </div>
+    <nav>
+        @if (LoginUserRole == "superadmin")
+        {
+            <div class="mega_menu" id="m_m_profile">
+                <span><a href="@Url.Action("profile", "admin")">PROFILE</a></span>
+            </div>
+            <div class="mega_menu" id="m_m_members">
+                <span><a href="@Url.Action("members", "admin")">TEAM MEMBERS</a></span>
+            </div>
+            <div class="mega_menu" id="m_m_influencers">
+                <span><a href="@Url.Action("influencers", "admin")">INFLUENCERS</a></span>
+            </div>
+            <div class="mega_menu" id="m_m_item">
+                <span><a href="@Url.Action("items", "admin")">ITEM LIST</a></span>
+            </div>
+        }
+        else if (LoginUserRole == "admin")
+        {
+            <div class="mega_menu" id="m_m_profile">
+                <span><a href="@Url.Action("profile", "admin")">PROFILE</a></span>
+            </div>
+            <div class="mega_menu" id="m_m_influencers">
+                <span><a href="@Url.Action("myinfluencers", "admin")">MY INFLUENCERS</a></span>
+            </div>
+            <div class="mega_menu" id="m_m_item">
+                <span><a href="@Url.Action("items", "admin")">ITEM LIST</a></span>
+            </div>
+        }
+        else
+        {
+            <div class="mega_menu" id="m_m_profile">
+                <span><a href="@Url.Action("profile", "account")">PROFILE</a></span>
+            </div>
+            <div class="mega_menu" id="m_m_order">
+                <span><a href="@Url.Action("MyOrders", "Influencers")">My Orders</a></span>
+            </div>
+            <div class="mega_menu" id="m_m_item">
+                <span><a href="@Url.Action("MyItems", "Influencers")">My Items</a></span>
+            </div>
+            <div class="mega_menu" id="m_m_points">
+                <span><a href="@Url.Action("Points", "Influencers")">Points</a></span>
+            </div>
+            <div class="mega_menu" id="m_m_faq">
+                <span><a href="@Url.Action("faq", "info")">FAQ</a></span>
+            </div>
+        }
+        <div class="mega_menu">
+            <span><a href="@Url.Action("logout", "account")" onclick="">SIGN OUT</a></span>
+        </div>
+    </nav>
+</div>
+<!-- Mobile Left E -->

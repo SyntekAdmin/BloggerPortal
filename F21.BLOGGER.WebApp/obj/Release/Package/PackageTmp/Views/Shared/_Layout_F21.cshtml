@@ -1,0 +1,96 @@
+﻿@using System.Web.Optimization;
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="en" prefix="og: http://ogp.me/ns#">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Forever21 WebSite" />
+    <title>Forever21 Site</title>
+    <!--[if lt IE 9]>
+    <div class="ie_warning"><div>Forever21.com is not optimized for Internet Explorer 8. <br/>Use another browser or upgrade here: <a href="http://windows.microsoft.com/en-us/internet-explorer/download-ie" target="_blank" class="t_pink underline">http://windows.microsoft.com/en-us/internet-explorer/download-ie</a></div></div>
+    <![endif]-->
+    <title>Influencer</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=9">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <meta name="author" content="Forever21">
+    <meta name="apple-mobile-web-app-title" content="Influencer">
+    <meta name="Description" content="Forever21.com offers the most current fashions for women and men.  Shop Forever21.com and find the best selection of fashion tops, dresses, denim, shoes, accessories, jewelery, lingerie, 21 special items, and more!">
+    <meta name="Keywords" content="clothes, clothing, apparel, casual tops, dressy tops, basics, skirts, dress, dresses, sale, fashion, cheap, tees, tank tops, graphics, shirts, pants, jeans, shorts, sweaters, outerwear, jackets, tops, bottoms, skirts, shoes, halter, tube top, denim, jewelery, accessories, rings, necklaces, underwear, mens, womens, woman, junior fashion, xxi, forlove, gadzooks, womens apparel, intimate, handbags, sunglasses, hats, scarves, hair goods, earrings">
+    <link rel="shortcut icon" href="http://www.forever21.com/images/en/common/favicon.ico" type="image/x-icon">
+    <link rel="apple-touch-icon-precomposed" href="http:http://www.forever21.com/images/en/common/apple-touch-icon-144x144-precomposed.png">
+    <link rel="stylesheet" type="text/css" href="/resource/css/bp_style.css">
+    <link rel="stylesheet" type="text/css" href="/resource/css/bp_image.css">
+    <script type="text/javascript" src="/resource/js/jquery-3.1.1.min.js"></script>
+    <script type="text/javascript" src="/resource/js/f21_js.js"></script>
+    <script type="text/javascript" src="/resource/js/owl.carousel.js"></script>
+    <script type="text/javascript" src="/resource/js/jquery.flex-modal.js"></script>
+    <script type="text/javascript" src="/Scripts/jquery-ui.js"></script>
+    <script type="text/javascript" src="/resource/js/jquery.fileupload.js"></script>
+    <script type="text/javascript" src="/resource/js/common.js"></script>
+    <script type="text/javascript" src="/Scripts/jquery.validate.min.js"></script>
+    <script type="text/javascript" src="/Scripts/additional-methods.min.js"></script>
+    
+
+    @Scripts.Render("~/bundles/angular")
+    @Scripts.Render("~/bundles/angular-ui")
+    @Scripts.Render("~/bundles/app")
+    @RenderSection("metaSection", required: false)
+
+    <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/angularjs/1.6.5/angular-route.js"></script>
+
+</head>
+
+<body ng-app="forever21App">
+    
+    <span class="scrollToTop t_bold"></span>
+    <!-- Loading S -->
+    <div class="loading" style="display: none;"><span><img src="/resource/images/loading.gif"></span></div>
+    <!-- Loading E -->
+
+    @Html.Partial("_Left_Mobile")
+
+    <!-- Quick Side S -->
+    @Html.Partial(fnGetQuickLayout())
+    <!-- Quick Side E -->
+ 
+    <!-- Center Container S -->
+    <div class="c_container">
+        <div class="mobile_overlay"></div>
+        <header>
+            @Html.Partial("_Header")
+        </header>
+
+        <main role="main">
+            <div id="main">
+                <!-- Container Body S -->
+                <div class="container con_container regular_container clearfix">
+                    <!-- Breadcrumb S -->
+                    <div class="breadcrumb fc">
+                        <a href="/">Home</a>
+                        /
+                        <span class="t_pink underline" id="menuName" name="munuName"></span>
+                    </div>
+                    <!-- Breadcrumb E -->
+                    <!-- Left Side S -->
+                        @Html.Partial("_Left")
+                    <!-- Left Side E -->
+                    <!-- Right Side S -->
+                        @RenderBody()
+                    <!-- Right Side E -->
+                </div>
+                <!-- Container Body E -->
+            </div>
+        </main>
+        <footer>
+            @Html.Partial("_Footer")
+        </footer>
+    </div>
+    <!-- Center Container E -->
+</body>
+</html>

@@ -1,0 +1,269 @@
+﻿<!-- Right Side S -->
+<form method="POST" id="register-form" class="smart-form client-form">
+    <div class="col_s_10_of_10 col_m_9_of_12 col_l_13_of_16 pb_20">
+        <div class="nav_top_container txcl nav_content_title">
+            <h1>PROFILE</h1>
+        </div>
+        <!-- Cotent S -->
+        <div class="container row pt_10 pb_20">
+            <div class="col_s_10_of_10 col_m_4_of_12 col_l_4_of_16 pt_20 pb_20 qv_slide">
+                <div class="col_s_3_of_10 col_m_8_of_12 col_l_10_of_16 row fc">
+                    <img src="@LoginUserPhotoUrl" id="userPhoto" name="userPhoto">
+                    <span class="icon_pencil"></span>
+                </div>
+            </div>
+            <div class="col_s_10_of_10 col_m_6_of_12 col_l_8_of_16 txlc pb_20">
+                <fieldset class="pb_20">
+                    <p class="t_res txr pb_10">* Required</p>
+                    <span class="input_label focus">
+                        <span class="icon_delete"></span>
+                        <input type="text" name="firstname" id="firstname" maxlength="32" required="required">
+                        <label>FIRST NAME *</label>
+                    </span>
+                    <span class="input_label focus">
+                        <span class="icon_delete"></span>
+                        <input type="text" name="lastname" id="lastname" maxlength="32" required="required">
+                        <label>LAST NAME *</label>
+                    </span>
+                    <span class="input_label focus">
+                        <input type="email" name="email" id="email" maxlength="40" readonly required="required">
+                        <label>EMAIL ADDRESS *</label>
+                    </span>
+                    <span class="input_label">
+                        <button class="bg_gray btn_small inline fr">SHOW</button>
+                        <button class="bg_gray btn_small inline fr" onclick="fnClickShowPW(event, 'SHOW', 'HIDE', '#password', '#passwordConfirm'); return false;">SHOW</button>
+                        <input type="password" name="password" id="password" maxlength="14" required="required">
+                        <label>PASSWORD *</label>
+                    </span>
+                    <span class="input_label">
+                        <span class="icon_delete" style="display:none;"></span>
+                        <input type="password" name="passwordConfirm" maxlength="14" id="passwordConfirm" required="required">
+                        <label>COFIRM PASSWORD *</label>
+                    </span>
+                    <span class="input_label focus">
+                        <input type="text" name="phoneNo" id="phoneNo" maxlength="32" required="required">
+                        <label>PHONE NUMBER + *</label>
+                    </span>
+                    <span class="input_label focus">
+                        <input type="text" name="instagramId" id="instagramId" maxlength="32" value="" required="required">
+                        <label>INSTAGRAM * </label>
+                    </span>
+                    <span class="input_label textfield focus">
+                        <textarea cols="45" rows="5" class="ws_100" id="aboutMe" name="aboutMe"></textarea>
+                        <label>ABOUT ME(OPTION)</label>
+                    </span>
+                </fieldset>
+                <fieldset>
+                    <button class="bg_yellow ws_100 btn_mid" type="submit">UPDATE</button>
+                </fieldset>
+            </div>
+        </div>
+        <!-- Cotent E -->
+    </div>
+</form>
+    <!-- Right Side E -->
+
+<!-- Updated Your Profile S -->
+<div id="updated_your_profile" class="flex-modal-hide ">
+    <div class="fc col_s_9_10 col_m_6_of_12 col_l_6_of_16">
+        <button class="quick_close" type="button"></button>
+        <div class="pa_20">
+            <p class="p_title txl"><span class="t_bold">UPDATED YOUR PROFILE</span></p>
+            <p class="txl pt_10 pb_10">Your proifle has been updated. If you have questions or concerns,<br>please contact us.</p>
+            <p class="txl t_pink pt_10">* Forever 21 Influencer Account does not affect Forever 21 Account.</p>
+        </div>
+    </div>
+</div>
+<!-- Updated Your Profile E -->
+
+    <script src="./../resource/js/jquery.val.custom.js"></script>
+
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+
+            $("#register-form").validate({
+                submitHandler: function () {
+                    SaveProfile();
+                },
+
+                rules: {
+
+                    firstname: {
+                        required: true
+                    },
+
+                    lastname: {
+                        required: true
+                    },
+                    email: {
+                        required: true,
+                        email: true
+                    },
+
+                    password: {
+                        required: true,
+                        minlength: 7,
+                        maxlength: 14
+                    },
+                    passwordConfirm: {
+                        required: true,
+                        minlength: 7,
+                        maxlength: 14,
+                        equalTo: '#password'
+                    },
+                    phoneNo: {
+                        required: true
+                    },
+                    instagramId: {
+                        required: true
+                    }
+
+                },
+
+                // Messages for form validation
+                messages: {
+                    firstname: {
+                        required: 'Please enter your first name'
+                    },
+
+                    lastname: {
+                        required: 'Please enter your last name'
+                    },
+
+                    email: {
+                        required: 'Please enter your email address',
+                        email: 'Please enter a VALID email address'
+                    },
+
+                    password: {
+                        required: 'Please enter your password',
+                        minlength : "Between 7 and 14 characters PASSWORD",
+                        maxlength : "Between 7 and 14 characters PASSWORD"
+                    },
+                    passwordConfirm: {
+                        required: 'Please enter your password one more time',
+                        equalTo: 'Please enter the same password as above'
+                    },
+
+                    phoneNo: {
+                        required: 'Please enter your phone number'
+                    },
+
+                    instagramId: {
+                        required: 'Please enter your Instagram Id'
+                    }
+
+
+                },
+
+            });
+        });
+    </script>
+
+    <script type="text/javascript">
+
+        // 좌측 메뉴 Active
+        fnActiveMenu("m_profile", "Profile");
+        $("#m_m_profile").addClass('active');
+
+        $(document).ready(function () {
+            $(".loading").show();
+            InitProfile();
+            $(".loading").hide();
+        });
+
+        function InitProfile() {
+            
+            jQuery.support.cors = true;
+            $.ajax({
+                url: '/api/user/@LoginUserEmail',
+                type: 'GET',
+                dataType: 'json',
+                success: function (data) {
+                    $('#userPhoto').attr("src", data.PHOTO_URL);
+                    $('#userPhotoMo').attr("src", data.PHOTO_URL);
+                    $('#firstname').val(data.FIRST_NM);
+                    $('#lastname').val(data.LAST_NM);
+                    $('#email').val(data.USER_EMAIL);
+                    $('#phoneNo').val(data.PHONE_NO);
+                    $('#instagramId').val(data.INSTAGRAM_ID);
+                    $('#aboutMe').val(data.ABOUT_ME);
+                },
+                error: function () {
+                    alert('error');
+                }
+            });
+        }
+
+        function SaveProfile() {
+  
+            jQuery.support.cors = true;
+            $.ajax({
+                url: '/api/user/updateuser',
+                type: 'POST',
+                dataType: 'json',
+                data : {
+                    USER_SEQ : @LoginUserSeq,
+                    USER_EMAIL : $('#email').val(),
+                    USER_PASS : $('#password').val(),
+                    FIRST_NM : $('#firstname').val(),
+                    LAST_NM : $('#lastname').val(),
+                    PHOTO_URL : $('#userPhoto').attr("src"),
+                    PHONE_NO : $('#phoneNo').val(),
+                    INSTAGRAM_ID : $('#instagramId').val(),
+                    ABOUT_ME : $('#aboutMe').val()
+                },
+                success: function (data) {
+                    if(data > 0)
+                    {
+                        $('#password').val("");
+                        $('#passwordConfirm').val("");
+
+                        $.flexModal.add('#updated_your_profile', function( api ) {
+                            api.open('#updated_your_profile'); 
+                        });
+                    }
+                    else
+                    {
+                        alert("update error");
+                    }
+                },
+                error: function () {
+                    alert('webservice error');
+                }
+            });
+        }
+
+        function SaveProfilePhoto(photoUrl) {
+            jQuery.support.cors = true;
+            $.ajax({
+                url: '/api/admin/updateadminuphoto',
+                type: 'POST',
+                dataType: 'json',
+                data : {
+                    USER_SEQ : @LoginUserSeq,
+                    PHOTO_URL: photoUrl
+                },
+                success: function (data) {
+                    if(data > 0)
+                    {
+                        //alert("success");
+                        // location.reload();
+                    }
+                    else
+                    {
+                        alert("photo update error");
+                    }
+                },
+                error: function () {
+                    alert('webservice error');
+                }
+            });
+        }
+
+
+    </script>
+
+    <script type="text/javascript" src="./../resource/js/f21.upload.character.js"></script>
+

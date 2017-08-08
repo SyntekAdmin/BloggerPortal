@@ -1,0 +1,86 @@
+﻿				<!-- Right Side S -->
+<div class="col_s_10_of_10 col_m_9_of_12 col_l_13_of_16 pb_20">
+    <div class="nav_top_container txcl nav_content_title">
+        <h1>PROFILE</h1>
+    </div>
+    <div class="container row pt_20 pb_20">
+        <div class="col_s_10_of_10 col_m_4_of_12  col_l_4_of_16 pt_20 pb_20 qv_slide">
+            <div class="col_s_3_of_10 col_m_8_of_12 col_l_10_of_16 row fc">
+                <img src="@LoginUserPhotoUrl" id="userPhoto" name="userPhoto">
+                <span class="icon_pencil"></span>
+            </div>
+        </div>
+        <div class="col_s_10_of_10 col_m_8_of_12 col_l_8_of_16 pb_20">
+            <div class="txlc pb_20">
+                <p class="pt_20 pb_20 t_gray">
+                    Hello, <strong><label id="lb_FirstName">@LoginUserFirstName</label></strong>. <br>
+                    <span class="block pt_5">You can view your recent orders, manage your shipping and billing address and edit your password and account details.</span>
+                </p>
+                <!-- My Account S -->
+                <div class="pt_5 clearfix t_gray">
+                    <div class="container row pb_20">
+                        <a href="@Url.Action("profile", "account")">
+                            <p class="ttl_header underline t_bold">Profile</p>
+                            <p class="pt_5 t_small">You can access and modify your personal details (name, password, preference, etc.).</p>
+                        </a>
+                    </div>
+                    <div class="container row pb_20">
+                        <a href="@Url.Action("MyOrders", "Influencers")">
+                            <p class="ttl_header underline t_bold">My Orders</p>
+                            <p class="pt_5 t_small">Check the status and information regarding your online orders.</p>
+                        </a>
+                    </div>
+                    <div class="container row pb_20">
+                        <a href="@Url.Action("MyItems", "Influencers")">
+                            <p class="ttl_header underline t_bold">My Items</p>
+                            <p class="pt_5 t_small">Keep track of all your items, upload your photos and links, and view past photos.</p>
+                        </a>
+                    </div>
+                    <div class="container row pb_20">
+                        <a href="@Url.Action("Points", "Influencers")">
+                            <p class="ttl_header underline t_bold">Points</p>
+                            <p class="pt_5 t_small">View all the points you earned from your photo uploads and picked photos.</p>
+                        </a>
+                    </div>
+                    <div class="container row pb_20">
+                        <a href="./../Info/faq_list.html">
+                            <p class="ttl_header underline t_bold">FAQ</p>
+                            <p class="pt_5 t_small"></p>
+                        </a>
+                    </div>
+                    <div class="container row pb_20">
+                        <a href="@Url.Action("logout", "account")">
+                            <p class="ttl_header underline t_bold">SIGN OUT</p>
+                            <p class="pt_5 t_small"></p>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <!-- Inner Content E -->
+        </div>
+        <!-- Cotent E -->
+    </div>
+    <!-- Right Side E -->
+</div>
+<script type="text/javascript">
+
+    $(document).ready(function () {
+        InitProfile();
+    });
+
+    function InitProfile() {
+        jQuery.support.cors = true;
+        $.ajax({
+            url: '/api/user/@LoginUserEmail',
+            type: 'GET',
+            dataType: 'json',
+            success: function (data) {
+                $('#userPhoto').attr("src", data.PHOTO_URL);
+         //       $('#userPhotoMo').attr("src", data.PHOTO_URL);
+            },
+            error: function () {
+                alert('error');
+            }
+        });
+    }
+</script>

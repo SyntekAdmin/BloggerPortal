@@ -1,0 +1,277 @@
+﻿<!-- Right Container S -->
+<div class="desktop_overlay top_type1"></div>
+<div class="r_container top_type1" id="div_member_popup" ng-controller="MemberQuickController">
+    <span class="icon_close"></span>
+    <div class="quick col_s_9_of_10 col_m_9_of_12 col_l_12_of_16 fc">
+        <!-- Right Content S -->
+        <form method="POST" id="register-form" class="smart-form client-form">
+            <div id="div_add_member" style="display:none;">
+                <div class="ttl_header t_bold pb_10 pt_20 "><label id="lb_p_title">Add New Team Member</label></div>
+                <fieldset>
+                    <p class="t_res txr pb_10">* Required</p>
+                    <span class="input_label">
+                        <span class="icon_delete" style="display: none;"></span>
+                        <input type="text" id="CREATE_FIRSTNAME" value="" name="CREATE_FIRSTNAME" maxlength="32" required="required">
+                        <label>FIRST NAME *</label>
+                    </span>
+                    <span class="input_label">
+                        <span class="icon_delete" style="display: none;"></span>
+                        <input type="text" id="CREATE_LASTNAME" value=""  name="CREATE_LASTNAME" maxlength="32" required="required">
+                        <label>LAST NAME *</label>
+                    </span>
+                    <span class="input_label">
+                        <span class="icon_delete" style="display: none;"></span>
+                        <input type="email" id="CREATE_EMAIL" value=""  name="CREATE_EMAIL" maxlength="40" required="required">
+                        <label>EMAIL ADDRESS *</label>
+                    </span>
+                    <div class="input_label focus" id="">
+                        <div class="select_container">
+                            <div class="checkout show_mobile">
+                                <div class="show_mobile select col_s_10_of_10">
+                                    <label>INFLUENCERS</label>
+                                    <select class="ws_100" id="sel_influencers" onchange="fnChangedl('influencers', this); return false;">
+                                        <option value="">Select</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col_m_12_of_12 col_l_16_of_16 txl hide_mobile">
+                                <span class="drop_p" list-option-class>
+                                    <span class="arrow_down ws_100">
+                                        <label>INFLUENCERS</label>
+                                        <p class="pt_10" ng-bind="infUserName">Select</p>
+                                        <input type="hidden" ng-bind="infUserSeq" />
+                                    </span>
+                                </span>
+                                <div class="drop_c b_gray">
+                                    <dl id="dl_influencers"></dl>
+                                </div>
+                            </div>
+                        </div>
+                    </div>                   
+                    <input type="hidden" id="hd_influencers" name="hd_influencers" value="" required="required">
+                    <button class="bg_yellow ws_100 btn_mid mt_10" type="submit">CREATE</button>
+                </fieldset>
+            </div>
+        </form>
+            <!-- Right Content E -->
+            <!-- Right Content S -->
+            <div id="div_modify_member" style="display:none;">
+                <div class="ttl_header t_bold pb_10 pt_20 "><label id="lb_p_title">Member Information</label></div>
+                <div class="pt_10 pb_20">
+                    <div class="container clearfix">
+                        <div class="col_s_10_of_10 col_m_3_of_12 col_l_4_of_16">
+                            <div class="col_s_3_of_10 col_m_8_of_12 col_l_11_of_16 fc">
+                                <img src="./../resource/images/profile_female.png" alt="female" id="MODIFY_PHOTO">
+                            </div>
+                        </div>
+                        <div class="col_s_10_of_10 col_m_9_of_12 col_l_12_of_16">
+                            <div class="bb_dark pb_5 clearfix show_tablet">
+                                <div class="fl">
+                                    <p class="pt_10 pb_10 t_small t_bold">Giselle Romero</p>
+                                </div>
+                                <div id="MODIFY_NEWUSER" class="fr">
+                                    <span class="block t_small t_bold txc label new">NEW</span>
+                                </div>
+                            </div>
+                            <ul class="t_small">
+                                <li class="clearfix pt_10">
+                                    <div class="col_s_4_of_10 t_bold">Email</div>
+                                    <div calss="col_s_6_of_10"><div id="MODIFY_EMAIL" /></div>
+                                </li>
+                                <li class="clearfix pt_10">
+                                    <div class="col_s_4_of_10 t_bold">Join Date</div>
+                                    <div class="col_s_6_of_10"><div id="MODIFY_JOINDATE" /></div>
+                                </li>
+                                <li class="clearfix pt_10">
+                                    <div class="col_s_4_of_10 t_bold">Last Sign in</div>
+                                    <div class="col_s_6_of_10"><div id="MODIFY_LASTSIGNIN" /></div>
+                                </li>
+                                <li class="clearfix pt_10">
+                                    <div class="col_s_4_of_10 t_bold">Influencers</div>
+                                    <div class="col_s_6_of_10"><div id="MODIFY_INFLUENCERS" /><span class="t_pink" style="display:none;">TBD</span></div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="ttl_header t_bold pb_10 pt_20 bt_gray" id="Influencers"><label id="lb_p_title">Assigned Influencers</label></div>
+                <div class="pt_10 pb_20" ng-repeat="items in meals_inf" my-repeat-directive2>
+                    <div class="container clearfix bb_gray pt_10 pb_10">
+                        <table class="ws_100">
+                            <colgroup><col style="width:70%;"></colgroup>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <p>
+                                            <span class="col_s_3_of_10 col_m_3_of_12 col_l_3_of_16 txc">
+                                                <span class="col_s_8_of_10 col_m_8_of_12 col_l_13_of_16">
+                                                    <img src="./../resource/images/profile_female.png">
+                                                </span>
+                                            </span>
+                                            <span class="ttl_header t_bold">Hi, {{items.FIRST_NM}}</span>
+                                        </p>
+                                    </td>
+                                    <td>
+                                        <p class="txr">
+                                            <span class="vm">
+                                                <span class="icon_edit_black p_relative fc" ng-click="fnSaveAssign(this, $index,items.USER_SEQ)"></span>
+                                            </span>
+                                            <span class="vm pl_10">
+                                                <span class="icon_delete p_relative fc" ng-click="fnReleaseAssign(items.USER_EMAIL)"></span>
+                                            </span>
+                                        </p>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <!-- Option S -->
+                        <div class="clearfix pb_10">
+                            <ul class="col_s_8_of_10 fr t_small">
+                                <li class="clearfix pt_10">
+                                    <div class="col_s_4_of_10 t_bold">Status</div>
+                                    <div class="col_s_6_of_10">
+                                        <span class="drop_p row fc" list-option-class>
+                                            <span class="s_dropdown arrow_down"><label><a ng-bind="items.STATUS_CD">Select</a></label></span>
+                                        </span>
+                                        <div id="" class="drop_c b_gray">
+                                            <dl>
+                                                <dd><span ng-class="{'selected t_pink': items.STATUS_CD === 'Regist'}" ng-click="fnStatusSet(this, 'Regist', $index)">Regist</span></dd>
+                                                <dd><span ng-class="{'selected t_pink': items.STATUS_CD === 'Accept'}" ng-click="fnStatusSet(this, 'Accept', $index)">Accept</span></dd>
+                                                <dd><span ng-class="{'selected t_pink': items.STATUS_CD === 'Pending'}" ng-click="fnStatusSet(this, 'Pending', $index)">Pending</span></dd>
+                                                <dd><span ng-class="{'selected t_pink': items.STATUS_CD === 'Inactivate'}" ng-click="fnStatusSet(this, 'Inactivate', $index)">Inactivate</span></dd>
+                                                <dd><span ng-class="{'selected t_pink': items.STATUS_CD === 'Reactivate'}" ng-click="fnStatusSet(this, 'Reactivate', $index)">Reactivate</span></dd>
+                                                <dd><span ng-class="{'selected t_pink': items.STATUS_CD === 'Block'}" ng-click="fnStatusSet(this, 'Block', $index)">Block</span></dd>
+                                                <dd><span ng-class="{'selected t_pink': items.STATUS_CD === 'Reject'}" ng-click="fnStatusSet(this, 'Reject', $index)">Reject</span></dd>
+                                                <dd><span ng-class="{'selected t_pink': items.STATUS_CD === 'Delete'}" ng-click="fnStatusSet(this, 'Delete', $index)">Delete</span></dd>
+                                            </dl>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="clearfix pt_10">
+                                    <div class="col_s_4_of_10 t_bold">Assignee</div>
+                                    <div class="col_s_6_of_10">
+                                        <span class="drop_p row fc" list-option-class>
+                                            <span class="s_dropdown arrow_down"><label><a ng-bind="items.ADMIN_NAME">Select</a></label></span>
+                                            <input type="hidden" ng-bind="items.ADMIN_SEQ" />
+                                        </span>
+                                        <div id="" class="drop_c b_gray">
+                                            <dl>
+                                                <dd ng-repeat="admin in admins">
+                                                    <span ng-class="{'selected t_pink': items.ADMIN_SEQ === admin.USER_SEQ}" ng-bind="admin.USER_NAME" ng-click="fnAdminSet(this, $index, $parent.$index)"></span>
+                                                </dd>
+                                            </dl>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                        <!-- Option E -->
+                    </div>
+                </div>
+            </div>
+            <!-- Right Content E -->
+</div>
+</div>
+<!-- Right Container E -->
+<script type="text/javascript">
+    $(document).ready(function () {
+        InitProfile();
+    });
+    $(document).ready(function () {
+        
+        $("#register-form").validate({
+            submitHandler: function () {
+                SaveProfile();
+            },
+            rules: {
+                CREATE_FIRSTNAME: {
+                    required: true
+                },
+
+                CREATE_LASTNAME: {
+                    required: true
+                },
+                CREATE_EMAIL: {
+                    required: true,
+                    email: true
+                }
+            },
+
+            // Messages for form validation
+            messages: {
+                CREATE_FIRSTNAME: {
+                    required: 'Please enter your first name'
+                },
+
+                CREATE_LASTNAME: {
+                    required: 'Please enter your last name'
+                },
+
+                CREATE_EMAIL: {
+                    required: 'Please enter your email address',
+                    email: 'Please enter a VALID email address'
+                }
+            },
+
+        });
+    });
+
+    
+    function SaveProfile() {
+        jQuery.support.cors = true;
+        var firstname = $('#CREATE_FIRSTNAME').val().trim();
+        var lastname = $('#CREATE_LASTNAME').val().trim();
+        var email = $('#CREATE_EMAIL').val().trim();
+        var firstname = $('#CREATE_FIRSTNAME').val().trim();
+        var infUserSeq = $('#hd_influencers').val();
+        
+        $.ajax({
+            url: '/api/admin/registadmin',
+            type: 'POST',
+            dataType: 'json',
+            data: {
+                USER_EMAIL: email,
+                FIRST_NM: firstname,
+                LAST_NM: lastname,
+                INFLUENCER: infUserSeq,
+            },
+            success: function (data) {
+                if (data > 0) {
+                    location.reload();
+                }
+                else if (data == -2) {
+                    alert("이미 등록된 Email입니다.");
+                    $('#CREATE_EMAIL').focus();
+                    return;
+                } else {
+                    alert("사용자 등록이 실패하였습니다. 관리자에게 문의하시기 바랍니다.");
+                    //alert("사용자 등록이 실패하였습니다. 관리자에게 문의하시기 바랍니다.");
+                }
+            },
+            error: function () {
+                alert("사용자 등록시 에러가 발생하였습니다. 관리자에게 문의하시기 바랍니다.");
+                //alert("사용자 등록시 에러가 발생하였습니다. 관리자에게 문의하시기 바랍니다.");
+            }
+        });
+    }
+
+    function InitProfile() {
+        // Assignee Admin을 바인딩
+        jQuery.support.cors = true;
+        $.ajax({
+            url: '/api/admin/nomatchInfluencers',
+            type: 'GET',
+            dataType: 'json',
+            success: function (data) {
+
+                $.each(data, function (i, v) {
+                    $("#sel_influencers").append("<option value='" + v.USER_SEQ + "'>" + v.USER_NAME + "</option>");
+                    $("#dl_influencers").append("<dd onclick=\"fnChangedl('influencers', this, '" + v.USER_SEQ + "', '" + v.USER_NAME + "'); return false;\"><span>" + v.USER_NAME + "</span></dd>");
+                });
+            },
+            error: function () {
+                alert('error');
+            }
+        });
+    }
+</script>

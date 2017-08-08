@@ -1,0 +1,77 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="c:\program files (x86)\microsoft visual studio 14.0\team tools\static analysis tools\fxcop\Xml\CodeAnalysisReport.xsl"?>
+<FxCopReport Version="14.0">
+ <Targets>
+  <Target Name="D:\Projects\Syntek\Forever21\Influencer2\F21.BLOGGER.Service\F21.BLOGGER.WebApp\bin\F21.BLOGGER.WebApp.dll">
+   <Modules>
+    <Module Name="f21.blogger.webapp.dll">
+     <Namespaces>
+      <Namespace Name="F21.BLOGGER.WebApp.Common">
+       <Types>
+        <Type Name="LogUtil" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Members>
+          <Member Name="#LogWrite(System.String,System.String)" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="개체를 여러 번 삭제하지 마십시오." Category="Microsoft.Usage" CheckId="CA2202" Status="Active" Created="2017-08-07 12:44:48Z" FixCategory="DependsOnFix">
+             <Issue Certainty="75" Level="Warning" Path="D:\Projects\Syntek\Forever21\Influencer2\F21.BLOGGER.Service\F21.BLOGGER.WebApp\Common" File="LogUtil.cs" Line="28">'fs' 개체는 'LogUtil.LogWrite(string, string)' 메서드에서 여러 번 삭제할 수 있습니다. System.ObjectDisposedException이 생성되지 않도록 개체에 대해 Dispose를 여러 번 호출하지 마십시오.: Lines: 28, 29</Issue>
+            </Message>
+           </Messages>
+          </Member>
+         </Members>
+        </Type>
+        <Type Name="NetworkFunctions" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Members>
+          <Member Name="#GetWebResponseData(System.String,F21.BLOGGER.WebApp.Common.NetworkFunctions+CallType,System.String)" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="개체를 여러 번 삭제하지 마십시오." Category="Microsoft.Usage" CheckId="CA2202" Status="Active" Created="2017-08-07 12:44:48Z" FixCategory="DependsOnFix">
+             <Issue Certainty="75" Level="Warning" Path="D:\Projects\Syntek\Forever21\Influencer2\F21.BLOGGER.Service\F21.BLOGGER.WebApp\Common" File="NetworkFunctions.cs" Line="82">'HttpWebReq.GetRequestStream()' 개체는 'NetworkFunctions.GetWebResponseData(string, NetworkFunctions.CallType, string)' 메서드에서 여러 번 삭제할 수 있습니다. System.ObjectDisposedException이 생성되지 않도록 개체에 대해 Dispose를 여러 번 호출하지 마십시오.: Lines: 82</Issue>
+             <Issue Certainty="75" Level="Warning" Path="D:\Projects\Syntek\Forever21\Influencer2\F21.BLOGGER.Service\F21.BLOGGER.WebApp\Common" File="NetworkFunctions.cs" Line="82">'streamWriter' 개체는 'NetworkFunctions.GetWebResponseData(string, NetworkFunctions.CallType, string)' 메서드에서 여러 번 삭제할 수 있습니다. System.ObjectDisposedException이 생성되지 않도록 개체에 대해 Dispose를 여러 번 호출하지 마십시오.: Lines: 82</Issue>
+            </Message>
+           </Messages>
+          </Member>
+         </Members>
+        </Type>
+       </Types>
+      </Namespace>
+     </Namespaces>
+    </Module>
+   </Modules>
+  </Target>
+ </Targets>
+ <Rules>
+  <Rule TypeName="개체를 여러 번 삭제하지 마십시오." Category="Microsoft.Usage" CheckId="CA2202">
+   <Name>개체를 여러 번 삭제하지 마십시오.</Name>
+   <Description>올바로 구현된 Dispose 메서드는 예외를 throw하지 않고 여러 번 호출할 수 있습니다. 그러나 확실하지는 않으므로 System.ObjectDisposedException이 생성되지 않도록 개체에 대해 Dispose를 여러 번 호출하지 마십시오.</Description>
+   <Resolution Name="Default">{0} 개체는 {1} 메서드에서 여러 번 삭제할 수 있습니다. System.ObjectDisposedException이 생성되지 않도록 개체에 대해 Dispose를 여러 번 호출하지 마십시오.: Lines: 82</Resolution>
+   <Owner>RuleOwner</Owner>
+   <Url>http://msdn.microsoft.com/library/ms182334.aspx</Url>
+   <Email />
+   <MessageLevel Certainty="75">Warning</MessageLevel>
+   <File Name="dataflowrules.dll" Version="14.0.0.0" />
+  </Rule>
+ </Rules>
+ <Localized>
+  <String Key="Category">범주</String>
+  <String Key="Certainty">확신도</String>
+  <String Key="CollapseAll">모두 축소</String>
+  <String Key="CheckId">확인 ID</String>
+  <String Key="Error">오류</String>
+  <String Key="Errors">개 오류</String>
+  <String Key="ExpandAll">모두 확장</String>
+  <String Key="Help">도움말</String>
+  <String Key="Line">줄</String>
+  <String Key="Messages">메시지</String>
+  <String Key="LocationNotStoredInPdb">[Pdb에 위치가 저장되지 않음]</String>
+  <String Key="Project">프로젝트</String>
+  <String Key="Resolution">확인</String>
+  <String Key="Rule">규칙</String>
+  <String Key="RuleFile">규칙 파일</String>
+  <String Key="RuleDescription">규칙 설명</String>
+  <String Key="Source">소스</String>
+  <String Key="Status">상태</String>
+  <String Key="Target">대상</String>
+  <String Key="Warning">경고</String>
+  <String Key="Warnings">경고</String>
+  <String Key="ReportTitle">코드 분석 보고서</String>
+ </Localized>
+</FxCopReport>

@@ -1,0 +1,15 @@
+﻿@model HandleErrorInfo
+@{
+    ViewBag.Title = "Error";
+}
+
+<div class="error-wrap">
+    <p class="t"><strong>오류가</strong> 발생했습니다.</p>
+    <p class="d">자세한 사항은 시스템 관리자에게 문의하시기 바랍니다.<span class="tel">Tel. 02-111-2222</span></p>
+</div>
+
+<br />
+<h2>Error => @Model.Exception.Message</h2>
+<br />
+@Model.Exception.ToString()
+<br />

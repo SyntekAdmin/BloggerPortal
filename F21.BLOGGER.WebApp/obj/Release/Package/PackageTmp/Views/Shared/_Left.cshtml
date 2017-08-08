@@ -1,0 +1,45 @@
+﻿<div class="col_s_10_of_10 col_m_3_of_12 col_l_3_of_16">
+    <div class="container side_left_menu">
+        <div class="container clearfix">
+            <p class="s_title hide_mobile"><span class="uppercase" id="userFirstNameLeft">@LoginUserFirstName</span>’S PAGE</p>
+            <!--<ul>
+                <li class="active"><a href="./../Admin/profile.html"><span>Profile</span></a></li>
+                <li><a href="./../Admin/my_influencers.html"><span>My Influencers</span></a></li>
+                <li><a href="./../Admin/member_list.html">Team Members</a></li>
+                <li><a href="./../Admin/influencers.html">Influencers</a></li>
+                <li><a href="./../Admin/item_list.html">Item List</a></li>
+                <li><a href="#">Sign Out</a></li>
+            </ul>-->
+            @if (LoginUserRole == "superadmin")
+            {
+                <ul>
+                    <li id="m_profile"><a href="@Url.Action("profile", "admin")"><span>Profile</span></a></li>
+                    <li id="m_members"><a href="@Url.Action("members", "admin")">Team Members</a></li>
+                    <li id="m_influencers"><a href="@Url.Action("influencers", "admin")">Influencers</a></li>
+                    <li id="m_item"><a href="@Url.Action("items", "admin")">Item List</a></li>
+                    <li><a href="@Url.Action("logout", "account")" onclick="$('.loading').show();">Sign Out</a></li>
+                </ul>
+            }
+            else if (LoginUserRole == "admin")
+            {
+                <ul>
+                    <li id="m_profile"><a href="@Url.Action("profile", "admin")"><span>Profile</span></a></li>
+                    <li id="m_influencers"><a href="@Url.Action("myinfluencers", "admin")"><span>My Influencers</span></a></li>
+                    <li id="m_item"><a href="@Url.Action("items", "admin")">Item List</a></li>
+                    <li><a href="@Url.Action("logout", "account")" onclick="$('.loading').show();">Sign Out</a></li>
+                </ul>
+            }
+            else
+            {
+                <ul>
+                    <li id="m_profile"><a href="@Url.Action("profile", "account")"><span>Profile</span></a></li>
+                    <li id="m_order"><a href="@Url.Action("MyOrders", "Influencers")"><span>My Orders</span></a></li>
+                    <li id="m_item"><a href="@Url.Action("MyItems", "Influencers")">My Items</a></li>
+                    <li id="m_points"><a href="@Url.Action("Points", "Influencers")">Points</a></li>
+                    <li id="m_faq"><a href="@Url.Action("faq", "info")">FAQ</a></li>
+                    <li><a href="@Url.Action("logout", "account")" onclick="$('.loading').show();">Sign Out</a></li>
+                </ul>
+            }
+        </div>
+    </div>
+</div>

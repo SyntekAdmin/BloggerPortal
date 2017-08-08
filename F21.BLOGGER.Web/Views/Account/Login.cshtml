@@ -1,0 +1,78 @@
+﻿@using F21.BLOGGER.Web.Models
+@using System.Configuration;
+
+@model LoginViewModel
+@{
+    ViewBag.WrapperClass = "login";
+
+    var jss = new System.Web.Script.Serialization.JavaScriptSerializer();
+    var callbackData = jss.Serialize(ViewBag.CallbackData);
+}
+
+<div class="login-wrap">
+    <h1><span class="en">Member Login</span></h1>
+    <fieldset>
+        <legend>로그인</legend>
+
+        @using (Ajax.BeginForm("Login", "Account", null,
+            new AjaxOptions()
+            {
+                HttpMethod = "POST",
+                OnSuccess = "LoginForm_onSuccess",
+            },
+            new { id = "LoginForm", @class = "form-login", autocomplete = "off" }))
+        {
+            @Html.AntiForgeryToken()
+            @*@Html.Hidden("returnUrl", returnUrl)*@
+            <div class="input-box">
+                @Html.TextBoxFor(c => c.Id, new { type = "text", title = "아이디", @class = "quickValidate", datavalidate = "required", placeholder = "아이디를 입력하세요", desc = "아이디", onkeydown = "keydown(event);" })
+                @Html.PasswordFor(c => c.Password, new { title = "비밀번호", @class = "quickValidate", datavalidate = "required", placeholder = "비밀번호를 입력하세요", desc = "비밀번호", onkeydown = "keydown(event);" })
+            </div>
+            <a href='#' onclick="javascript:login();"><span>로그인</span></a>
+        }
+        <a href="javascript:void(0)" onclick="location.href='@Url.Action("RegistPolicyCheck","Account")'"><span>Regist</span></a>
+    </fieldset>
+</div>
+
+<script type="text/javascript">
+        var joinWindow = null;
+        @if (callbackData != "null")
+        {
+            <text>
+            $(document).ready(function () {
+                var data = null;
+                try { data = JSON.parse('@Html.Raw(callbackData)'); } catch (err) { }
+                if (data) {
+                    if (data.ResultCode == -3) {
+                        PasswordChangeConfirm(data.ExceptioMessage);
+                    }
+                    else {
+                        $.alert("Error", data.ExceptioMessage);
+                    }
+                }
+            });
+            </text>
+        }
+
+        function LoginForm_onSuccess(data, status) {
+            if (data.IsSuccess) {
+                $.LoadingOverlay("show");
+                location.href = "/";
+            }
+            else {
+                $.alert("Error", data.ExceptioMessage);
+            }
+        }
+
+
+        function keydown(e) {
+            if (e.keyCode == 13) {
+                $('#LoginForm').submit();
+            }
+        }
+
+        function login() {
+            $('#LoginForm').submit();
+        }
+
+</script>

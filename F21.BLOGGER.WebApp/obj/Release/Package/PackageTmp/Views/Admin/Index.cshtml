@@ -1,0 +1,110 @@
+﻿
+<div class="col_s_10_of_10 col_m_9_of_12 col_l_13_of_16 pb_20">
+    <div class="nav_top_container txcl nav_content_title">
+        <h1><span class="uppercase" id="userFirstNameAdmin" name="userFirstNameAdmin">@LoginUserFirstName</span>’S PAGE</h1>
+    </div>
+    <!-- Cotent S -->
+    <div class="container row pt_10 pb_20">
+        <div class="col_s_10_of_10 col_m_4_of_12  col_l_4_of_16 pt_20 pb_20 qv_slide">
+            <div class="col_s_3_of_10 col_m_8_of_12 col_l_10_of_16 row fc">
+                <img src="@LoginUserPhotoUrl" id="userPhoto" name="userPhoto">
+                <span class="icon_pencil"></span>
+            </div>
+        </div>
+        <div class="col_s_10_of_10 col_m_8_of_12 col_l_8_of_16 pb_20">
+            <div class="pb_20">
+                <p class="pt_20 pb_20 t_gray">
+                    Hello, <strong><label id="userFirstNameAdmin2" name="userFirstNameAdmin2">@LoginUserFirstName</label></strong>. <br>
+                    <span class="block pt_5">You can manage all admins and influencers, keep track of all items, and manage your account details.</span>
+                </p>
+                <!-- My Account S -->
+                <div class="pt_5 clearfix t_gray">
+                    <div class="container row pb_20">
+                        <a href="@Url.Action("profile", "admin")">
+                            <p class="ttl_header underline t_bold">Profile</p>
+                            <p class="pt_5 t_small">You can access and modify your personal details (name, password, preference, etc.).</p>
+                        </a>
+                    </div>
+                    @if (LoginUserRole == "superadmin")
+                    {
+                        <div class="container row pb_20">
+                            <a href="@Url.Action("members", "admin")">
+                                <p class="ttl_header underline t_bold">Team Members</p>
+                                <p class="pt_5 t_small">Manage all admins from the Influencers Team.</p>
+                            </a>
+                        </div>
+                        <div class="container row pb_20">
+                            <a href="@Url.Action("influencers", "admin")">
+                                <p class="ttl_header underline t_bold">Influencers</p>
+                                <p class="pt_5 t_small">Manage all current influencers and new influencers.</p>
+                            </a>
+                        </div>
+                    }
+                    else if (LoginUserRole == "admin")
+                    {
+                        <div class="container row pb_20">
+                            <a href="@Url.Action("myinfluencers", "admin")">
+                                <p class="ttl_header underline t_bold">My Influencers</p>
+                                <p class="pt_5 t_small">Manage all current influencers and new influencers.</p>
+                            </a>
+                        </div>
+                    }
+                    <div class="container row pb_20">
+                        <a href="@Url.Action("items", "admin")">
+                            <p class="ttl_header underline t_bold">Item List</p>
+                            <p class="pt_5 t_small">Keep track of influencers's items, and view all uploaded photos and links.</p>
+                        </a>
+                    </div>
+                    <div class="container row pb_20">
+                        <a href="@Url.Action("logout", "account")">
+                            <p class="ttl_header underline t_bold">SIGN OUT</p>
+                            <p class="pt_5 t_small"></p>
+                        </a>
+                    </div>
+                </div>
+                <!-- My Account E -->
+            </div>
+        </div>
+    </div>
+    <!-- Cotent E -->
+</div>
+
+<script type="text/javascript">
+
+    // 좌측 메뉴 Active
+    //$("#m_profile").addClass('active');
+    fnActiveMenu("_", "Welcome");
+
+    function SaveProfilePhoto(photoUrl) {
+        jQuery.support.cors = true;
+        $.ajax({
+            url: '/api/admin/updateadminuphoto',
+            type: 'POST',
+            dataType: 'json',
+            data : {
+                USER_SEQ : @LoginUserSeq,
+                PHOTO_URL: photoUrl
+            },
+            success: function (data) {
+                if(data > 0)
+                {
+                    //alert("success");
+                    // location.reload();
+                }
+                else
+                {
+                    alert("photo update error");
+                }
+            },
+            error: function () {
+                alert('webservice error');
+            }
+        });
+    }
+</script>
+
+<script src="./../resource/js/jquery.val.custom.js"></script>
+
+<script type="text/javascript" src="./../resource/js/f21.upload.character.js"></script>
+
+

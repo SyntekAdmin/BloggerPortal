@@ -1,0 +1,17 @@
+D:\Projects\Syntek\Forever21\Influencer2\F21.BLOGGER.Service\F21.BLOGGER.DataAccess\bin\Release\F21.BLOGGER.DataAccess.dll
+D:\Projects\Syntek\Forever21\Influencer2\F21.BLOGGER.Service\F21.BLOGGER.DataAccess\bin\Release\F21.BLOGGER.DataAccess.pdb
+D:\Projects\Syntek\Forever21\Influencer2\F21.BLOGGER.Service\F21.BLOGGER.DataAccess\bin\Release\Dapper.dll
+D:\Projects\Syntek\Forever21\Influencer2\F21.BLOGGER.Service\F21.BLOGGER.DataAccess\bin\Release\DapperExtensions.dll
+D:\Projects\Syntek\Forever21\Influencer2\F21.BLOGGER.Service\F21.BLOGGER.DataAccess\bin\Release\F21.BLOGGER.Model.dll
+D:\Projects\Syntek\Forever21\Influencer2\F21.BLOGGER.Service\F21.BLOGGER.DataAccess\bin\Release\Newtonsoft.Json.dll
+D:\Projects\Syntek\Forever21\Influencer2\F21.BLOGGER.Service\F21.BLOGGER.DataAccess\bin\Release\Stis.Core.Common.dll
+D:\Projects\Syntek\Forever21\Influencer2\F21.BLOGGER.Service\F21.BLOGGER.DataAccess\bin\Release\Stis.Core.dll
+D:\Projects\Syntek\Forever21\Influencer2\F21.BLOGGER.Service\F21.BLOGGER.DataAccess\bin\Release\Stis.Data.DapperNet.dll
+D:\Projects\Syntek\Forever21\Influencer2\F21.BLOGGER.Service\F21.BLOGGER.DataAccess\bin\Release\Stis.Data.dll
+D:\Projects\Syntek\Forever21\Influencer2\F21.BLOGGER.Service\F21.BLOGGER.DataAccess\bin\Release\F21.BLOGGER.Model.pdb
+D:\Projects\Syntek\Forever21\Influencer2\F21.BLOGGER.Service\F21.BLOGGER.DataAccess\bin\Release\Dapper.xml
+D:\Projects\Syntek\Forever21\Influencer2\F21.BLOGGER.Service\F21.BLOGGER.DataAccess\bin\Release\DapperExtensions.pdb
+D:\Projects\Syntek\Forever21\Influencer2\F21.BLOGGER.Service\F21.BLOGGER.DataAccess\bin\Release\Newtonsoft.Json.xml
+D:\Projects\Syntek\Forever21\Influencer2\F21.BLOGGER.Service\F21.BLOGGER.DataAccess\obj\Release\F21.BLOGGER.DataAccess.csprojResolveAssemblyReference.cache
+D:\Projects\Syntek\Forever21\Influencer2\F21.BLOGGER.Service\F21.BLOGGER.DataAccess\obj\Release\F21.BLOGGER.DataAccess.dll
+D:\Projects\Syntek\Forever21\Influencer2\F21.BLOGGER.Service\F21.BLOGGER.DataAccess\obj\Release\F21.BLOGGER.DataAccess.pdb

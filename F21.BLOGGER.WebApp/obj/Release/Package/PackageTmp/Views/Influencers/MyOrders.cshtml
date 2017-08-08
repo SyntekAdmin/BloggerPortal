@@ -1,0 +1,104 @@
+﻿<script language="javascript" src="~/Scripts/app/Common.js"></script>
+<script language="javascript" src="~/Scripts/app/orders/ListMyOrder_Biz.js"></script>
+<script language="javascript" src="~/Scripts/app/Pager.js"></script>
+<script language="javascript" src="~/Scripts/app/orders/ListMyOrder_Ctrl.js"></script>
+<!-- Right Side S -->
+<div ng-controller="MyOrderListController">
+    <div class="col_s_10_of_10 col_m_9_of_12 col_l_13_of_16 pb_20">
+        <div class="nav_top_container txcl nav_content_title">
+            <h1>MY ORDER</h1>
+        </div>
+        <!-- Cotent S -->
+        <div class="container row pt_10 pb_20">
+            <!-- No Items List S -->
+            <div id="div_empty" style="display:none;">
+                <div class="container row pt_20 pb_20">
+                    <div class="col_s_6_of_10 col_m_5_of_12 col_l_5_of_16 txc fc pa_20">
+                        <p><img src="./../resource/images/icon_empty_order.png" class="wm_70 ws_80"></p>
+                        <p class="ttl_header t_bold pb_10">OOPS! IT'S EMPTY...</p>
+                        <p class="pb_20 hp_subtitle">You have not placed any orders.</p>
+                        <p class="pb_10">
+                            <button type="button" class="bg_black ws_100 btn_big" onclick="location.href = 'https://www.forever21.com';">SHOP NOW</button>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <!-- No Items List E -->
+            <!-- Items List S -->
+            <div id="div_order_list" style="display:block;">
+                <!-- View Option Grid S -->
+                <div class="view_grid txr show_desktop ws_100 row">
+                    <dir-pagination-controls id="top-pager" class="fr txr show_desktop s_page" boundary-links="true" on-page-change="pageChangeHandler(newPageNumber)"></dir-pagination-controls>
+                    <input type="number" min="1" max="100" class="form-control" ng-model="pageSize" readonly="readonly" style="display:none;">
+                </div>
+                <!-- View Option Grid E -->
+                <!-- Order List Grid S -->
+                <div class="container row pb_20 order_list" id="orders" ng-cloak>
+                    <!-- Order Items S -->
+                    <div dir-paginate="meal in meals.OrderHistoryInfoList | itemsPerPage: pageSize" current-page="currentPage" class="container b_gray row">
+                        <div class="bg_light_gray pa_10 ttl_header t_bold row container"><span>Shipped :{{meal.ShipmentTrackingNumber}}</span></div>
+                        <div class="container pa_10 row">
+                            <div class="col_s_10_of_10 col_l_3_of_16 vt pb_10 t_small">
+                                <ul class="pt_5">
+                                    <li class="pb_10">Order # : {{meal.OrderNumber}}</li>
+                                    <li class="pb_10">Total : {{meal.OrderItemQty}} item(s) / ${{meal.OrderTotal}}</li>
+                                </ul>
+                            </div>
+                            <div class="col_s_10_of_10 col_l_13_of_16 vt row_6 fr">
+                                <!-- Item S -->
+                                <div class="pi_wrapper"  ng-repeat="item in meal.OrderHistoryItemSummaryList">
+                                    <div class="p_item">
+                                        <div class="tag_color">{{meal.OrderStatusName}}</div>
+                                        <a href="#"><img src="{{item.ImageFileSrc }}"></a>
+                                    </div>
+                                    <div class="txc">
+                                        @*<div ng-switch="item.MyItem_Seq">
+                                            <div ng-switch-when="-1">
+                                                <span class="pr_10"><input type="checkbox" ng-click="fnAddItems(this,$index,$parent.$index)" id="{{meal.OrderNumber}}_{{item.ProductId}}_{{item.VariantId}}" name="checkItem" ng-checked="{{item.MyItem_Seq !== '-1'}}" value="{{meal.OrderNumber}}_{{item.ProductId}}_{{item.VariantId}}"><label for="{{meal.OrderNumber}}_{{item.ProductId}}_{{item.VariantId}}"></label>Select</span>
+                                            </div>
+                                            <div ng-switch-default>
+                                                <span class="pr_10"><input type="checkbox" onclick="return false;" id="checkTrueItem" name="checkTrueItem" ng-checked="true" value="{{item.MyItem_Seq}}"><label for="checkTrueItem"></label>Select</span>
+                                            </div>
+                                        </div>*@
+                                        <span class="pr_10"><input type="checkbox" id="checkTrueItem_{{meal.OrderNumber}}" name="checkTrueItem_{{meal.OrderNumber}}" ng-click="fnAddItems(this, $parent.$index, $index)" ng-model="item.IsChecked"><label for="checkTrueItem_{{meal.OrderNumber}}"></label>Select</span>
+                                        <span ng-bind="item.IsChecked"></span>
+                                    </div>
+                                </div>
+                                <!-- Item E -->
+                            </div>
+                        </div>
+                        <div class="row container  pa_10">
+                            <div ng-switch="meal.SelectItem">
+                                <div ng-switch-when="Y">
+                                    <a ng-href="/Influencers/MyItems/">
+                                        <div class="txr bt_gray pt_10 t_small t_bold" >VIEW MY ITEMS<span class="p_next"></span></div>
+                                    </a>
+                                </div>
+                                <div ng-switch-default>
+                                    <div class="txr bt_gray pt_10 t_small t_pink t_bold" ng-click="fnAddMyItems(this, $parent.$index, $index)">ADD SELECTED TO MY ITEMS<span class="p_next"></span></div>
+                                </div>
+                            </div>
+                        </div>
+                            
+                    </div>
+                    <!-- Order Items E -->
+                </div>
+                <!-- Order List Grid S -->
+                <!-- View Option Grid S -->
+                <div class="view_grid txcr ws_100 row hide_desktop">
+                    <dir-pagination-controls id="bottom-pager" class="inline s_page" boundary-links="true" on-page-change="pageChangeHandler(newPageNumber)"></dir-pagination-controls>
+                </div>
+                <!-- View Option Grid E -->
+            </div>
+            <!-- Items List E -->
+        </div>
+        <!-- Cotent E -->
+    </div>
+</div>
+    <!-- Right Side E -->
+    <script language="javascript">
+        $("#m_order").addClass('active');
+        $(document).ready(function () {
+
+        });
+    </script>

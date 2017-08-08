@@ -1,0 +1,71 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "F21.BLOGGER.Business", "F21.BLOGGER.Business\F21.BLOGGER.Business.csproj", "{51E97CB7-CF0B-486E-8285-AD23A356D2F5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "F21.BLOGGER.DataAccess", "F21.BLOGGER.DataAccess\F21.BLOGGER.DataAccess.csproj", "{74FED7B6-FBA2-46CA-AE3F-3CEE569196B1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "F21.BLOGGER.Model", "F21.BLOGGER.Model\F21.BLOGGER.Model.csproj", "{7ED9C4FE-F3D6-43ED-AAE7-87389370D41A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Assembly", "Assembly", "{6FCB09CD-D29D-430E-B0D6-32398C1490B2}"
+	ProjectSection(SolutionItems) = preProject
+		Assembly\DocumentFormat.OpenXml.dll = Assembly\DocumentFormat.OpenXml.dll
+		Assembly\DocumentFormat.OpenXml.Extensions.dll = Assembly\DocumentFormat.OpenXml.Extensions.dll
+		Assembly\Stis.Core.Common.dll = Assembly\Stis.Core.Common.dll
+		Assembly\Stis.Core.dll = Assembly\Stis.Core.dll
+		Assembly\Stis.Data.DapperNet.dll = Assembly\Stis.Data.DapperNet.dll
+		Assembly\Stis.Data.dll = Assembly\Stis.Data.dll
+		Assembly\Stis.Web.Client.dll = Assembly\Stis.Web.Client.dll
+		Assembly\Stis.Web.Mvc.dll = Assembly\Stis.Web.Mvc.dll
+		Assembly\Stis.Web.Security.dll = Assembly\Stis.Web.Security.dll
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "F21.BLOGGER.WebApp", "F21.BLOGGER.WebApp\F21.BLOGGER.WebApp.csproj", "{24CA74F5-6AF8-4C67-AC79-3E648ECBEA68}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{51E97CB7-CF0B-486E-8285-AD23A356D2F5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{51E97CB7-CF0B-486E-8285-AD23A356D2F5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{51E97CB7-CF0B-486E-8285-AD23A356D2F5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{51E97CB7-CF0B-486E-8285-AD23A356D2F5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{74FED7B6-FBA2-46CA-AE3F-3CEE569196B1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{74FED7B6-FBA2-46CA-AE3F-3CEE569196B1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{74FED7B6-FBA2-46CA-AE3F-3CEE569196B1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{74FED7B6-FBA2-46CA-AE3F-3CEE569196B1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7ED9C4FE-F3D6-43ED-AAE7-87389370D41A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7ED9C4FE-F3D6-43ED-AAE7-87389370D41A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7ED9C4FE-F3D6-43ED-AAE7-87389370D41A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7ED9C4FE-F3D6-43ED-AAE7-87389370D41A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{24CA74F5-6AF8-4C67-AC79-3E648ECBEA68}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{24CA74F5-6AF8-4C67-AC79-3E648ECBEA68}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{24CA74F5-6AF8-4C67-AC79-3E648ECBEA68}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{24CA74F5-6AF8-4C67-AC79-3E648ECBEA68}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 5
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = http://112.214.72.101:8080/tfs/forever21
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = F21.BLOGGER.Business\\F21.BLOGGER.Business.csproj
+		SccProjectName1 = F21.BLOGGER.Business
+		SccLocalPath1 = F21.BLOGGER.Business
+		SccProjectUniqueName2 = F21.BLOGGER.DataAccess\\F21.BLOGGER.DataAccess.csproj
+		SccProjectName2 = F21.BLOGGER.DataAccess
+		SccLocalPath2 = F21.BLOGGER.DataAccess
+		SccProjectUniqueName3 = F21.BLOGGER.Model\\F21.BLOGGER.Model.csproj
+		SccProjectName3 = F21.BLOGGER.Model
+		SccLocalPath3 = F21.BLOGGER.Model
+		SccProjectUniqueName4 = F21.BLOGGER.WebApp\\F21.BLOGGER.WebApp.csproj
+		SccProjectName4 = F21.BLOGGER.WebApp
+		SccLocalPath4 = F21.BLOGGER.WebApp
+	EndGlobalSection
+EndGlobal

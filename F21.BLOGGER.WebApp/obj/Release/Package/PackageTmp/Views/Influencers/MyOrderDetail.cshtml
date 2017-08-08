@@ -1,0 +1,235 @@
+﻿<div id="content">
+    <!-- row -->
+    <div class="row">
+
+        <!-- col -->
+        <div class="col-xs-7 col-sm-7 col-md-7 col-lg-7">
+            <h1 class="page-title txt-color-blueDark">
+
+                <!-- PAGE HEADER -->
+                <i class="fa-fw fa fa-shopping-cart"></i>
+                MY ORDERS DETAIL
+            </h1>
+        </div>
+        <!-- end col -->
+
+        <div class="col-xs-5 col-sm-5 hidden-xs">
+            <div class="row pull-right page-title">
+                <div class="dataTables_filter" id="datatable_fixed_column_filter">
+                    <label>
+                        <span class="input-group-addon">
+                            <i class="glyphicon glyphicon-search"></i>
+                        </span>
+                        <input aria-controls="datatable_fixed_column" placeholder="" class="form-control" type="search">
+                    </label>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- end row -->
+
+    <style>
+        .order-img-box li img {
+            width: 100px;
+            height: 160px;
+        }
+
+        /* List layout */
+        ul.list {
+            list-style: none;
+            /*width: 500px;*/
+            margin: 0 auto;
+            text-align: left;
+        }
+
+        ul.list li {
+            border-bottom: 1px solid #ddd;
+            padding: 10px;
+            overflow: hidden;
+        }
+
+        ul.list li img {
+            width: 120px;
+            height: 120px;
+            float: left;
+            border: none;
+        }
+
+        ul.list li p {
+            margin-left: 135px;
+            font-weight: bold;
+            color: #6e7a7f;
+        }
+
+        /* Grid layout */
+
+        ul.grid {
+            list-style: none;
+            /*width: 570px;*/
+            margin: 0 auto;
+            text-align: left;
+        }
+
+        ul.grid li {
+            padding: 2px;
+            float: left;
+        }
+
+        ul.grid li img {
+            width: 200px;
+            height: 200px;
+            object-fit: cover;
+            display: block;
+            border: none;
+        }
+
+        /* MyOrders 이미지 위에 문자열.. */
+        ul.grid li .vx-title{
+            text-align:center;
+            font-weight:bold;
+            background-color: rgba(255,255,255, 0.8);
+            position: relative;
+            top: -18px;
+        }
+
+
+        /* order image box */
+        .order-img-head {
+            height:30px;
+            background-color: #eee; 
+            padding: 4px 0 6px 10px;
+        }
+
+        .order-img-head b {
+            font-size: larger;
+        }
+
+        .order-img-head span {
+            margin: 0 10px 0 10px;
+        }
+
+        .order-img-head .pink {
+            color: hotpink;
+            text-decoration-line: underline;
+        }
+
+        #datatable_fixed_column_wrapper{
+            border-top: 1px solid #ccc;
+        }
+    </style>
+
+    <!--
+        The ID "widget-grid" will start to initialize all widgets below
+        You do not need to use widgets if you dont want to. Simply remove
+        the <section></section> and you can use wells or panels instead
+    -->
+    <!-- widget grid -->
+    <section id="widget-grid" class="">
+        <!-- row -->
+        <div class="row">
+
+            <!-- NEW WIDGET START -->
+            <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12 sortable-grid ui-sortable">
+
+                <!-- Widget ID (each widget will need unique ID)-->
+                <div class="jarviswidget jarviswidget-color-blueDark" id="wid-id-my-orders-myorders" data-widget-colorbutton="false"
+                     data-widget-editbutton="false" data-widget-deletebutton="false">
+
+                    <!-- widget div-->
+                    <div>
+                        <!-- widget content -->
+                        <div class="widget-body no-padding">
+                            <div id="app" v-cloak>
+
+                                <table style="width: 100%;">
+                                    <tr>
+                                        <td class="order-img-head">
+                                            <b> Shipped : {{myorder.SHIPPED_DATE}} </b>
+                                            <span class="badge inbox-badge margin-right-13">&gt;</span>
+                                            <b class="pink"> {{myorder.ORDER_STATUS}} </b>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <table>
+                                                <tr>
+                                                    <td style="vertical-align:top">
+                                                        <table style="margin-top:20px;">
+                                                            <tr><td> Order # : {{myorder.ORDER_NO}} </td></tr>
+                                                            <tr><td> Total : {{myorder.ITEM_COUNT}} item(s) / ${{myorder.TOTAL_PRICE}} </td></tr>
+                                                            <tr><td><hr /></td></tr>
+                                                            <tr>
+                                                                <td style="text-align:center;"></td>
+                                                            </tr>
+                                                        </table>
+                                                    </td>
+                                                    <td>
+                                                        <ul class="order-img-box grid">
+                                                            <li v-for="b in myorder.Items">
+                                                                <img v-bind:src="b.PRODUCT_IMAGE" />
+                                                                <div class='vx-title'>
+                                                                    <p>{{b.ITEM_STATUS}}</p>
+                                                                </div>
+                                                            </li>
+                                                        </ul>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                    </tr>
+                                </table>
+                        
+                            </div>
+                        </div>
+                        <!-- end widget content -->
+                    </div>
+                    <!-- end widget div -->
+                </div>
+                <!-- end widget -->
+            </article>
+            <!-- WIDGET END -->
+
+        </div>
+        <!-- end row -->
+        
+    </section>
+    <!-- end widget grid -->
+
+
+</div>
+
+@section pagespecific {
+
+
+    <script type="text/javascript">
+
+    $(document).ready(function () {
+        new Vue({
+            el: '#app',
+            data: {
+                layout: 'grid',
+                myorder: {}
+            },
+            mounted: function () {
+                this.load()
+            },
+            methods: {
+                load: function () {
+                    var vm = this;
+
+                    $.ajax({
+                        url: '/api/influencers/myitems',
+                        success(res) {
+                            console.log(res);
+
+                            vm.myorder = res;
+                            
+                        }
+                    });
+                }
+            }
+        });
+    });
+
+    </script>
+}

@@ -1,0 +1,32 @@
+﻿@using F21.BLOGGER.Web.Models
+@using System.Configuration;
+@{
+    ViewBag.Title = "Regist";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="contents">
+
+    <div class="m-title">
+        <h1>FOREVER 21 INFLUENCER:</h1>
+    </div>
+
+    <div class="terms-wrap">
+        <textarea class="ps-textarea" readonly style="width:100%;min-height:600px;">
+            No matter you are a cool girl loving fashion, or a fashion influencer always show your forward fashion taste as a free-thinking girl.
+        </textarea>
+    </div>
+
+    <div class="btn-area">
+        <button type="button" class="ps-btn sm" onclick="acceptPolicy();"><span>ACCEPT</span></button>
+    </div>
+
+</div>
+<!-- contents : end -->
+
+@{
+    <script type="text/javascript">
+        function acceptPolicy() {
+            location.href = "@Url.Action("RegistInfluencer", "Account")";
+        }        
+    </script>
+}

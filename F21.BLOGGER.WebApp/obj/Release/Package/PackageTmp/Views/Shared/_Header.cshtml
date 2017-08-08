@@ -1,0 +1,156 @@
+﻿<div class="pre_header bg_black row container txc">
+    <!-- Global Bar S -->
+    <a href="#">2 DAY FREE SHIPPING FOR OUR INFLUENCERS</a>
+    <!-- Global Bar E -->
+</div>
+<!-- Header S -->
+<div class="container row txc pt_10 pb_10">
+    <div class="col_s_1_of_10">
+        <span class="show_mobile pa_20"><span class="icon_menu"></span></span>
+    </div>
+    <div class="col_s_8_of_10">
+        <span class="inline"><a href="/"><span class="logo"></span></a></span>
+    </div>
+    <!-- Head Right S -->
+    <div class="col_s_1_of_10 fr hide_mobile">
+        <a href="http://www.forever21.com" target="_blank">
+            <div class="shop_icon"></div>
+            <span class="ws_100 txc t_small">SHOP NOW</span>
+        </a>
+    </div>
+    <!-- Head Right S -->
+</div>
+<!-- Header E -->
+<!-- Head Tab Menu S -->
+<div class="container row bg_light_gray txc">
+    <div class="col_m_12_of_12 col_l_10_of_16 fc pa_5 hide_mobile wmx_800">
+        <table class="no_header sizechart ws_100 txc bg_white">
+            <tr>
+                <td>
+                    <p class="t_bold">
+                        <span class="col_m_4_of_12 col_l_5_of_16 txc pl_5">
+                            <span class="col_m_10_of_12 col_l_16_of_16 pr_5">
+                                <img id="userPhotoHead" name="userPhotoHead" src="@LoginUserPhotoUrl" />
+                            </span>
+                        </span>
+                        <span class="ellipsis vm txl pr_10">Hi, <span class="uppercase" id="userFirstNameHead">@LoginUserFirstName</span></span>
+                    </p>
+                </td>
+                @if (LoginUserRole == "superadmin")
+                {
+                    <!-- Current influencers S -->
+                    <td>
+                        <p class="t_small">CURRENT INFLUENCERS</p>
+                        <p class="t_bold">@SuperAdminCurrentInfluencers Influencers</p>
+                    </td>
+                    <!-- Current influencers E -->
+                    <!-- New influencers S -->
+                    <td>
+                        <p class="t_small">NEW INFLUENCERS</p>
+                        <p class="t_bold">@SuperAdminNewInfluencers Influencers</p>
+                    </td>
+                    <!-- New influencers E -->
+                    <!-- New photo upload S -->
+                    <td>
+                        <p class="t_small">NEW PHOTO UPLOADS</p>
+                        <p class="t_bold">@SuperAdminNewPhotos Photos</p>
+                    </td>
+                    <!-- New photo upload E -->
+                }
+                else if (LoginUserRole == "admin")
+                {
+                    <!-- My influencers S -->
+                    <td>
+                        <p class="t_small">MY INFLUENCERS</p>
+                        <p class="t_bold">@AdminMyInfluencers Influencers</p>
+                    </td>
+                    <!-- My influencers E -->
+                    <!-- New photo upload S -->
+                    <td>
+                        <p class="t_small">NEW PHOTO UPLOADS</p>
+                        <p class="t_bold">@AdminNewPhotos Photos</p>
+                    </td>
+                    <!-- New photo upload E -->
+                    <!-- Report to S -->
+                    <td>
+                        <p class="t_small">REPORT TO</p>
+                        <p class="t_bold">@AdminCreateUser</p>
+                    </td>
+                    <!-- Report to E -->
+                }
+                else
+                {
+                    <td>
+                        <p class="t_small">POINTS BALANCE</p>
+                        <p class="t_bold">$200.00</p>
+                    </td>
+                    <td>
+                        <p class="t_small">YOUR LAST ORDER</p>
+                        <p class="t_bold">1/20/2017 (4 items)</p>
+                    </td>
+                    <td>
+                        <p class="t_small">LAST UPLOAD ITEMS</p>
+                        <p class="t_bold">1/20/2017 (4 items)</p>
+                    </td>
+                }
+                <td>
+                    <p class="t_small">YOUR LAST SIGN IN</p>
+                    <p class="t_bold">@LoginUserLastSignIn</p>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+<!-- Head Tab Menu S -->
+@if (LoginUserRole == "superadmin" || LoginUserRole == "admin")
+{
+<script type="text/javascript">
+    
+    $(document).ready(function() {
+                    //InitHead();
+                });
+
+    function InitHead() {
+        jQuery.support.cors = true;
+        $.ajax({
+                        url: '/api/admin/admins/' + @LoginUserSeq,
+            type: 'GET',
+            dataType: 'json',
+            success: function(data) {
+                //사진
+                if ($("#userPhoto")) {
+                    $("#userPhoto").attr("src", data.PHOTO_URL);
+                }
+                if ($("#userPhotoLeftMo")) {
+                    $("#userPhotoLeftMo").attr("src", data.PHOTO_URL);
+                }
+                if ($("#userPhotoProfile")) {
+                    $("#userPhotoProfile").attr("src", data.PHOTO_URL);
+                }
+                if ($("#userPhotoProfileMo")) {
+                    $("#userPhotoProfileMo").attr("src", data.PHOTO_URL);
+                }
+                $('#userPhotoHead').attr("src", data.PHOTO_URL);
+
+                //사용자명
+                if ($('#userFirstNameLeftMo')) {
+                    $('#userFirstNameLeftMo').html(data.FIRST_NM);
+                }
+                if ($('#userFirstNameLeft')) {
+                    $('#userFirstNameLeft').html(data.FIRST_NM);
+                }
+                if ($('#userFirstNameAdmin')) {
+                    $('#userFirstNameAdmin').html(data.FIRST_NM);
+                }
+                if ($('#userFirstNameAdmin2')) {
+                    $('#userFirstNameAdmin2').html(data.FIRST_NM);
+                }
+                $('#userFirstNameHead').html(data.FIRST_NM);
+            },
+            error: function() {
+                alert('error');
+            }
+        });
+    }
+</script>
+}

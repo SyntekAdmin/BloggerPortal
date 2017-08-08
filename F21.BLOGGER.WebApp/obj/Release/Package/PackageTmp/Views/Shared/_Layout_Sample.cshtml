@@ -1,0 +1,49 @@
+﻿@using System.Web.Optimization;
+@{
+    Layout = null;
+}
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Forever21 WebSite" />
+    <title>Forever21 Site</title>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/angular")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/angular-ui")
+    @*@Scripts.Render("~/bundles/app")*@
+
+
+    @RenderSection("metaSection", required: false)
+</head>
+<body ng-app="forever21App">
+    <div class="body-bg"></div>
+    <div>
+        @*@Html.Partial("_Sidebar")
+        @Html.Partial("_Header")*@
+        <div class="al-main">
+            <div class="al-content">
+                <div>
+                    @RenderBody()
+                </div>
+            </div>
+        </div>
+        <footer class="al-footer clearfix">
+            <div class="al-footer-right">Created with <i class="ion-heart">Forever21</i></div>
+            <div class="al-footer-main clearfix">
+                <div class="al-copy">Web Site 2017</div>
+                <ul class="al-share clearfix"></ul>
+            </div>
+        </footer>
+    </div>
+    @*<img id='loading-indicator' src='/content/ajax-loader.gif' ng-if="loading">*@
+
+
+
+</body>
+</html>

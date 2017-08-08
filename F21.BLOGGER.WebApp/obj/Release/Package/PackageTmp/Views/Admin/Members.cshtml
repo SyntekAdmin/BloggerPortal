@@ -1,0 +1,194 @@
+﻿<!--link rel="stylesheet" type="text/css" href="/resource/css/jquery.flex-modal.css">
+<link rel="stylesheet" type="text/css" href="/resource/css/demo.css"-->
+<script language="javascript" src="~/Scripts/app/Common.js"></script>
+<script language="javascript" src="~/Scripts/app/members/ListMember_Biz.js"></script>
+<script language="javascript" src="~/Scripts/app/Pager.js"></script>
+<script language="javascript" src="~/Scripts/app/members/ListMember_Ctrl.js"></script>
+<script language="javascript" src="./../resource/js/jquery.val.custom.js"></script>
+<!--div id="alertData">
+
+</!div>
+
+<div id="modal-2" class="modal-2 flex-modal-hide" data-close-on-overlay-click="false" data-close-on-esc-key="false" data-close-btn-markup="false">
+    <h3>Confirmation</h3>
+    <ul>
+        <li>처리하시겠습니까?</li>
+    </ul>
+    <button class="btn btn-default" type="button" onclick="confirmResult=true;">Yes</button>
+    <button class="btn btn-default" type="button" onclick="confirmResult=false;">No</button>
+</div-->
+<!-- Right Side S -->
+<div id="member_Container" ng-controller="MemberController">
+    <div class="col_s_10_of_10 col_m_9_of_12 col_l_13_of_16">
+        <div class="nav_top_container txcl nav_content_title">
+            <h1>TEAM MEMBERS</h1>
+        </div>
+        <!-- Cotent S -->
+        <div class="container row pt_10 pb_20">
+            <!-- View Option Grid S -->
+            <div class="clearfix">
+                <div class="col_s_10_of_10 col_m_5_of_12 col_l_4_of_16 fr pb_5">
+                    <button class="ws_100 bg_yellow btn_mid qv_slide">ADD NEW MEMBERS</button>
+                </div>
+                <div class="view_grid clearfix m_sortfiler col_s_10_of_10 col_m_6_of_12 pa_0" style="display:none;">
+                    <div class="col_s_10_of_10 col_m_5_of_12 inline txcl pt_10">
+                        <span class="drop_p row fc" list-option-class>
+                            <span class="s_dropdown arrow_down"><label><a>SORT BY</a></label></span>
+                        </span>
+                        <div id="div-sort" class="drop_c b_gray">
+                            <dl>
+                                <dd><span class="sort_type selected t_pink" data-sort="00" ng-click="fnSortChange()">Sort A to Z</span></dd>
+                                <dd><span class="sort_type" data-sort="01" ng-click="fnSortChange()">Newest</span></dd>
+                                <dd><span class="sort_type" data-sort="02" ng-click="fnSortChange()">Start Date</span></dd>
+                                <dd><span class="sort_type" data-sort="03" ng-click="fnSortChange()">Points (High to Low)</span></dd>
+                                <dd><span class="sort_type" data-sort="04" ng-click="fnSortChange()">Points (Low to High)</span></dd>
+                            </dl>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- View Option Grid E -->
+            <!--  Member Grid S -->
+            <div class="container member_list">
+                <!--  Member List S -->
+                <div class="m_list clearfix" id="members" ng-cloak>
+                    <!-- Item S -->
+                    <div class="col_s_10_of_10 col_m_6_of_12 col_l_8_of_16" dir-paginate="meal in meals | itemsPerPage: pageSize" current-page="currentPage" my-repeat-directive>
+                        <div class="b_gray">
+                            <!-- Item Image S -->
+                            <div class="col_s_3_of_10 col_m_3_of_12 col_l_5_of_16 pt_10 pl_10 pb_10 txlc">
+                                <div class="col_s_8_of_10 col_m_10_of_12 col_l_11_of_16 fc ma_0 inline">
+                                    <img src="{{meal.PHOTO_URL}}">
+                                </div>
+                            </div>
+                            <!-- Item Image E -->
+                            <!-- Item Info S -->
+                            <div class="col_s_7_of_10 col_m_9_of_12 col_l_11_of_16 pt_10 pr_10 pb_10">
+                                <div class="pb_5 clearfix">
+                                    <div class="fl">
+                                        <p class="pt_10 pb_10 t_mid t_bold">{{meal.USER_NAME}}</p>
+                                    </div>
+                                    <div class="fr">
+                                        <div ng-switch on=meal.NEW_USER>
+                                            <div ng-switch-when="1">
+                                                <div class="tag_container round_tag t_black t_bold new p_relative">
+                                                    <span class="t_small">NEW</span>
+                                                </div>
+                                            </div>
+                                            <div ng-switch-default></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="bt_gray pt_5">
+                                    <table class="ws_100 t_small">
+                                        <tbody>
+                                            <tr>
+                                                <th>Email</th>
+                                                <td>{{meal.USER_EMAIL}}</td>
+                                            </tr>
+                                            <tr>
+                                                <th>Join Date</th>
+                                                <td>{{meal.JOIN_DATE}}</td>
+                                            </tr>
+                                            <tr>
+                                                <th>Last Sign in</th>
+                                                <td>
+                                                    <div ng-switch="meal.LAST_SIGN_IN">
+                                                        <div ng-switch-when="null">
+                                                            &nbsp;
+                                                        </div>
+                                                        <div ng-switch-default>
+                                                            {{meal.LAST_SIGN_IN}}
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th>Influencers</th>
+                                                <td>{{meal.INFLUENCERS }} influencers<span class="t_pink" style="display:none;">TBD</span></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <!-- Item Info E -->
+                            <!-- Item Button S -->
+                            <div class="bt_gray pa_10 clearfix">
+                                <div class="fl t_small t_pink t_bold pt_5" style="display:none;">
+                                    POINTS BALANCE : <span>{{meal.BALANCE }} </span>
+                                </div>
+                                <div class="fr">
+                                    <span class="vm">
+                                        <span class="icon_edit_black p_relative fc qv_slide" ng-click="fnGetProfile(meal.USER_SEQ)"></span>
+                                    </span>
+                                    <span class="vm pl_10">
+                                        <span class="icon_delete p_relative fc"  ng-click="fnDeleteAdmin(meal.USER_EMAIL)"></span>
+                                    </span>
+                                </div>
+                            </div>
+                            <!-- Item Button S -->
+                        </div>
+                    </div>
+                    <!-- Item E -->
+                </div>
+                <!--  Member List E -->
+            </div>
+            <!--  Member Grid E -->
+            <div class="view_grid txc" style="display:none;">
+                <dir-pagination-controls id="bottom-pager" class="inline s_page" boundary-links="true" on-page-change="pageChangeHandler(newPageNumber)"></dir-pagination-controls>
+            </div>
+        </div>
+        <!-- Cotent E -->
+    </div>
+    <!-- Right Side E -->
+    
+</div>
+<script type="text/javascript">
+
+        $("#m_members").addClass('active');
+        jQuery(document).ready(function(e){ // Temp Script
+            $('button.qv_slide').click(function (e) {
+                $('#div_add_member').show();
+                $('#div_modify_member').hide();
+            })
+        });
+    /*
+        function showMessage(content) {
+            var modalContent = '<h3>Message</h3><p>' + content + '</p>';
+			if($('#modalTest').length > 0){
+				$('.flex-modal-item__content-inner').html(modalContent);
+			}
+			else{
+				modalContent = '<div id="modalTest" class="modal-1 flex-modal-hide">' + modalContent + '</div>';
+				$('#alertData').html(modalContent);
+			}
+			$.flexModal.open('#modalTest', function(api){
+				$(this).on('close.flexModal');
+			});
+		}
+
+
+		var confirmResult = false;
+
+		$(function( $ ) {
+			$.flexModal.add('#modal-2', function( api ) {
+                $(this).on('click', 'button', function() {
+                    api.close('#modal-2');
+                });
+
+                $(this).on('close.flexModal', function() {
+                    if(confirmResult){
+						alert('Yes 선택');
+					}
+					else{
+						alert('No 선택');
+					}
+					console.log('close event triggered');
+                });
+                $(this).on('afterClose.flexModal', function() {
+                    console.log('afterClose event triggered');
+                });
+            });
+		});
+*/
+</script>

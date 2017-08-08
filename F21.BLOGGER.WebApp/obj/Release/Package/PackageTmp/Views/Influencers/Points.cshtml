@@ -1,0 +1,283 @@
+﻿			<!-- MAIN CONTENT -->
+<div id="content">
+
+    <div class="row">
+        <div class="col-xs-12 col-sm-7 col-md-7 col-lg-4">
+            <h1 class="page-title txt-color-blueDark">
+                <i class="fa fa-money fa-fw "></i>
+                POINTS
+            </h1>
+        </div>
+        <div class="col-xs-12 col-sm-5 col-md-5 col-lg-8 hide">
+            <ul id="sparks" class="">
+                <li class="sparks-info">
+                    <h5> My Income <span class="txt-color-blue">$47,171</span></h5>
+                    <div class="sparkline txt-color-blue hidden-mobile hidden-md hidden-sm">
+                        1300, 1877, 2500, 2577, 2000, 2100, 3000, 2700, 3631, 2471, 2700, 3631, 2471
+                    </div>
+                </li>
+                <li class="sparks-info">
+                    <h5> Site Traffic <span class="txt-color-purple"><i class="fa fa-arrow-circle-up" data-rel="bootstrap-tooltip" title="Increased"></i>&nbsp;45%</span></h5>
+                    <div class="sparkline txt-color-purple hidden-mobile hidden-md hidden-sm">
+                        110,150,300,130,400,240,220,310,220,300, 270, 210
+                    </div>
+                </li>
+                <li class="sparks-info">
+                    <h5> Site Orders <span class="txt-color-greenDark"><i class="fa fa-shopping-cart"></i>&nbsp;2447</span></h5>
+                    <div class="sparkline txt-color-greenDark hidden-mobile hidden-md hidden-sm">
+                        110,150,300,130,400,240,220,310,220,300, 270, 210
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <style>
+        .points-img-box li img {
+            width: 100px;
+            height: 160px;
+        }
+
+        /* List layout
+        ul.list {
+            list-style: none;
+            width: 500px; <-- 주석
+            margin: 0 auto;
+            text-align: left;
+        }
+
+        ul.list li {
+            border-bottom: 1px solid #ddd;
+            padding: 10px;
+            overflow: hidden;
+        }
+
+        ul.list li img {
+            width: 120px;
+            height: 120px;
+            float: left;
+            border: none;
+        }
+
+        ul.list li p {
+            margin-left: 135px;
+            font-weight: bold;
+            color: #6e7a7f;
+        } */
+
+        /* Grid layout */
+
+        ul.grid {
+            list-style: none;
+            width: 100%;
+            margin: 0 auto;
+            text-align: left;
+        }
+
+        ul.grid li {
+            padding: 2px;
+            float: left;
+            width: 280px;
+            margin:5px 10px 30px 10px;
+            border:0px solid red;
+        }
+
+        ul.grid li img {
+            width: 200px;
+            height: 200px;
+            object-fit: cover;
+            display: block;
+            border: none;
+        }
+
+    </style>
+
+    <!-- widget grid -->
+    <section id="widget-grid" class="">
+
+        <!-- row -->
+        <div class="row">
+
+            <!-- NEW WIDGET START -->
+            <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+
+                <!-- Widget ID (each widget will need unique ID)-->
+                <div class="jarviswidget jarviswidget-color-blueDark" id="wid-id-3" data-widget-editbutton="false">
+                    <!-- widget div-->
+                    <div>
+                        <!-- widget content -->
+                        <div class="widget-body no-padding">
+
+                            <div class="dataTables_wrapper form-inline no-footer" id="datatable_fixed_column_wrapper">
+                                <div class="dt-toolbar">
+                                    <div class="btn-group hidden-xs">
+                                        <button class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                                            SORT BY <span class="caret"></span>
+                                        </button>
+                                        <ul class="dropdown-menu">
+                                            <li>
+                                                <a href="javascript:void(0);">Newest</a>
+                                            </li>
+                                            <li>
+                                                <a href="javascript:void(0);">Picked</a>
+                                            </li>
+                                            <li>
+                                                <a href="javascript:void(0);">Uploaded</a>
+                                            </li>                                            
+                                        </ul>
+                                    </div>
+                                    <div class="pull-right">
+                                        <div class="btn-group hidden-xs">
+                                            <a href="/influencers/pointshistory">POINTS HISTORY</a>
+                                        </div>
+                                        <div class="btn-group" style="padding-left:20px;">
+                                            <a href="javascript:void(0)" class="btn btn-default" id="btn-prev"><i class="fa fa-chevron-left"></i></a>
+
+                                            <a href="javascript:void(0)" class="btn btn-default"> <span style="color:hotpink;font-weight:bold; text-decoration:underline;">1</span> </a>
+                                            <a href="javascript:void(0)" class="btn btn-default"> <b>2</b> </a>
+                                            <a href="javascript:void(0)" class="btn btn-default"> <b>3</b> </a>
+                                            <a href="javascript:void(0)" class="btn btn-default">  <b>...</b> </a>
+
+                                            <a href="javascript:void(0)" class="btn btn-default" id="btn-next"><i class="fa fa-chevron-right"></i></a>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <style>
+                                    
+                                    .points-img-table tr {
+                                        border-bottom:1px solid #dfdfdf;
+                                    }
+                                    .points-img-table tr:first-child {
+                                        border-bottom:0px;
+                                    }
+                                    .points-img-table tr:last-child {
+                                        border-bottom:0px;
+                                    }
+                                    .points-img-table td {
+                                        width:inherit;
+                                        margin-bottom:10px;
+                                        padding:8px 0 8px 0;
+                                    }
+                                    .points-img-table .product-name {
+                                        height:60px;
+                                    }
+                                    .points-img-table .product-name strong{
+                                        text-transform: capitalize;
+                                        font-size: 14px;
+                                        display: inline-block;
+                                        text-decoration: none;
+                                        max-width: 200px;
+                                        white-space: nowrap;
+                                        overflow: hidden;
+                                        text-overflow: ellipsis;
+                                        vertical-align: middle;
+                                    }
+                                    
+                                </style>
+
+
+                                <ul class="points-img-box grid" id="app" v-cloak>
+                                    <li v-for="a in points">
+
+                                        <table class="points-img-table">
+                                            <tr>
+                                                <td colspan="2" style="text-align:center;" >
+                                                    <img v-bind:src="a.PRODUCT_IMAGE" />
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="2" class="product-name">
+                                                    <h4><strong>{{a.PRODUCT_NAME}}</strong></h4>
+                                                    <span>{{a.ITEM_OPTIONS}}</span>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <strong>Order Date</strong>
+                                                </td>
+                                                <td>
+                                                    {{a.ORDERED_DATE}}
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <strong>Shipped Date</strong>
+                                                </td>
+                                                <td>
+                                                    {{a.SHIPPED_DATE}}
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                </td>
+                                                <td>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </li>
+                                </ul>
+
+                            </div>
+
+                        </div>
+                        <!-- end widget content -->
+
+                    </div>
+                    <!-- end widget div -->
+
+                </div>
+                <!-- end widget -->
+
+            </article>
+            <!-- WIDGET END -->
+
+        </div>
+
+        <!-- end row -->
+        <!-- end row -->
+
+    </section>
+    <!-- end widget grid -->
+
+</div>
+<!-- END MAIN CONTENT -->
+@section pagespecific {
+    <script type="text/javascript">
+
+    // DO NOT REMOVE : GLOBAL FUNCTIONS!
+        $(document).ready(function () {
+
+            new Vue({
+                el: '#app',
+                data: {
+                    layout: 'grid',
+                    points: []
+                },
+                mounted: function () {
+                    this.load()
+                },
+                methods: {
+                    load: function () {
+                        var vm = this;
+
+                        $.ajax({
+                            url: '/api/influencers/points',
+                            success(res) {
+                                console.log(res);
+
+                                $.each(res, function (i, v) {
+                                    if (v) {
+                                        Vue.set(vm.points, i, v);
+                                    }
+                                });
+                            }
+                        });
+
+                    }
+                }
+            });
+        });
+
+    </script>
+}
