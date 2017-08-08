@@ -12,7 +12,7 @@
          <Members>
           <Member Name="#LogWrite(System.String,System.String)" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
            <Messages>
-            <Message TypeName="개체를 여러 번 삭제하지 마십시오." Category="Microsoft.Usage" CheckId="CA2202" Status="Active" Created="2017-08-07 12:44:48Z" FixCategory="DependsOnFix">
+            <Message TypeName="개체를 여러 번 삭제하지 마십시오." Category="Microsoft.Usage" CheckId="CA2202" Status="Active" Created="2017-08-08 02:19:42Z" FixCategory="DependsOnFix">
              <Issue Certainty="75" Level="Warning" Path="D:\Projects\Syntek\Forever21\Influencer2\F21.BLOGGER.Service\F21.BLOGGER.WebApp\Common" File="LogUtil.cs" Line="28">'fs' 개체는 'LogUtil.LogWrite(string, string)' 메서드에서 여러 번 삭제할 수 있습니다. System.ObjectDisposedException이 생성되지 않도록 개체에 대해 Dispose를 여러 번 호출하지 마십시오.: Lines: 28, 29</Issue>
             </Message>
            </Messages>
@@ -23,7 +23,7 @@
          <Members>
           <Member Name="#GetWebResponseData(System.String,F21.BLOGGER.WebApp.Common.NetworkFunctions+CallType,System.String)" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
            <Messages>
-            <Message TypeName="개체를 여러 번 삭제하지 마십시오." Category="Microsoft.Usage" CheckId="CA2202" Status="Active" Created="2017-08-07 12:44:48Z" FixCategory="DependsOnFix">
+            <Message TypeName="개체를 여러 번 삭제하지 마십시오." Category="Microsoft.Usage" CheckId="CA2202" Status="Active" Created="2017-08-08 02:19:42Z" FixCategory="DependsOnFix">
              <Issue Certainty="75" Level="Warning" Path="D:\Projects\Syntek\Forever21\Influencer2\F21.BLOGGER.Service\F21.BLOGGER.WebApp\Common" File="NetworkFunctions.cs" Line="82">'HttpWebReq.GetRequestStream()' 개체는 'NetworkFunctions.GetWebResponseData(string, NetworkFunctions.CallType, string)' 메서드에서 여러 번 삭제할 수 있습니다. System.ObjectDisposedException이 생성되지 않도록 개체에 대해 Dispose를 여러 번 호출하지 마십시오.: Lines: 82</Issue>
              <Issue Certainty="75" Level="Warning" Path="D:\Projects\Syntek\Forever21\Influencer2\F21.BLOGGER.Service\F21.BLOGGER.WebApp\Common" File="NetworkFunctions.cs" Line="82">'streamWriter' 개체는 'NetworkFunctions.GetWebResponseData(string, NetworkFunctions.CallType, string)' 메서드에서 여러 번 삭제할 수 있습니다. System.ObjectDisposedException이 생성되지 않도록 개체에 대해 Dispose를 여러 번 호출하지 마십시오.: Lines: 82</Issue>
             </Message>
