@@ -1,0 +1,364 @@
+﻿<!-- QuickView Slide S -->
+<div class="desktop_overlay"></div>
+<div class="r_container" id="div_influencer_popup">
+    <span class="icon_close"></span>
+    <div class="quick col_s_9_of_10 col_m_9_of_12 col_l_12_of_16 fc">
+        <!-- Right Content S -->
+        <form method="POST" id="register-form" class="smart-form client-form">
+            <div id="div_add_influencer" style="display:none;">
+                <div class="ttl_header t_bold pb_10 pt_20 "><label id="lb_p_title">Add New Influencer</label></div>
+                <fieldset>
+                    <p class="t_res txr pb_10">* Required</p>
+                    <span class="input_label">
+                        <span class="icon_delete" style="display: none;"></span>
+                        <input type="text" name="firstname" id="firstname" maxlength="32" required="required">
+                        <label>FIRST NAME *</label>
+                    </span>
+                    <span class="input_label">
+                        <span class="icon_delete" style="display: none;"></span>
+                        <input type="text" name="lastname" id="lastname" maxlength="32" required="required">
+                        <label>LAST NAME *</label>
+                    </span>
+                    <span class="input_label">
+                        <button class="bg_gray btn_small inline fr" onclick="fnForever21ID(); return false;">CHECK ID</button>
+                        @*<span class="icon_delete" style="display: none;"></span>*@
+                        <input type="email" name="email" id="email" maxlength="40" required="required">
+                        <label>EMAIL ADDRESS *</label>
+                        <input id="forever21Id" name="forever21Id" type="hidden" value="" required="required" />
+                    </span>
+                    <div class="input_label">
+                        <span class="icon_delete" style="display: none;"></span>
+                        <input type="text" name="phoneNo" id="phoneNo" maxlength="32" required="required">
+                        <label>PHONE NUMBER</label>
+                    </div>
+                    <div class="input_label focus">
+                        <span class="icon_delete" style="display: none;"></span>
+                        <input type="text" name="instagramId" id="instagramId" maxlength="32" value="" required="required">
+                        <label>INSTAGRAM</label>
+                    </div>
+                    <div class="input_label focus" id="">
+                        <div class="select_container">
+                            <div class="show_mobile select col_s_10_of_10">
+                                <label>STATUS</label>
+                                <select class="ws_100" onchange="fnChangedl('status', this); return false;">
+                                    <option value="">Select</option>
+                                    <option value="Regist">Regist</option>
+                                    <option value="Accept">Accept</option>
+                                </select>
+                            </div>
+                            <div class="col_m_12_of_12 col_l_16_of_16 txl hide_mobile">
+                                <span class="drop_p">
+                                    <span class="arrow_down ws_100">
+                                        <label>STATUS</label>
+                                        <p class="pt_10">Select</p>
+                                    </span>
+                                </span>
+                                <div class="drop_c b_gray">
+                                    <dl>
+                                        <dd onclick="fnChangedl('status', this, 'Regist', 'Regist'); return false;"><span>Regist</span></dd>
+                                        <dd onclick="fnChangedl('status', this, 'Accept', 'Accept'); return false;"><span>Accept</span></dd>
+                                    </dl>
+                                </div>
+                            </div>
+                        </div>
+                        <input type="hidden" id="hd_status" name="hd_status" value="" required="required">
+                    </div>
+                    <div class="input_label focus" id="">
+                        <div class="select_container">
+                            <div class="show_mobile select col_s_10_of_10">
+                                <label>ASSIGNEE</label>
+                                <select class="ws_100" id="sel_assignee" onchange="fnChangedl('assignee', this); return false;">
+                                    <option value="">Select</option>
+                                </select>
+                            </div>
+                            <div class="col_m_12_of_12 col_l_16_of_16 txl hide_mobile">
+                                <span class="drop_p">
+                                    <span class="arrow_down ws_100">
+                                        <label>ASSIGNEE</label>
+                                        <p class="pt_10">Select</p>
+                                    </span>
+                                </span>
+                                <div class="drop_c b_gray">
+                                    <dl id="dl_assignee"></dl>
+                                </div>
+                            </div>
+                        </div>
+                        <input type="hidden" id="hd_assignee" name="hd_assignee" value="" required="required">
+                    </div>
+                </fieldset>
+                <fieldset>
+                    <button class="bg_yellow ws_100 btn_mid mt_10" type="submit">CREATE</button>
+                </fieldset>
+            </div>
+        </form>
+        <!-- Right Content E -->
+        <!-- Right Content S -->
+        <div id="div_reject_influence" style="display:none;">
+            <div class="ttl_header t_bold pb_10 pt_20 "><label id="lb_p_title">Reject Reason</label></div>
+            <fieldset>
+                <div class="input_label textfield">
+                    <textarea maxlength="" id="rejectReason" name="rejectReason" placeholder="WHY IS THIS INFUENCERS REJECTED?" class="ws_100"></textarea>
+                    <input type="hidden" id="hd_rejectuseremail" name="hd_rejectuseremail" value="">
+                </div>
+                <div id="" class="container row t_small mb_10 t_bold">
+                    <p>This message will be sent to the influencers via email</p>
+                </div>
+                <button type="button" id="btn_save_address" onclick="RejectProfile();" class="bg_black ws_100 btn_big mt_10">SUBMIT</button>
+            </fieldset>
+        </div>
+        <!-- Right Content E -->
+    </div>
+</div>
+<!-- QuickView Slide E -->
+
+
+<script type="text/javascript">
+
+    function fnForever21ID() {
+
+
+        var email = $('#email').val();
+
+        if(email == "")
+        {
+            alert("Please enter your email address");
+            return false;
+        }
+   
+        jQuery.support.cors = true;
+        $.ajax({
+            url: '/api/account/getforever21id',
+            type: 'GET',
+            dataType: 'json',
+            data : {
+                email : $('#email').val(),
+            },
+            success: function (data) {
+
+                if(data.ReturnCode == '00')
+                {
+                    alert("Success Get Forever21 ID");
+                    $('#forever21Id').val(data.UserId); 
+                }
+                else
+                {
+                    alert(data.ReturnMessage);
+                }
+                
+            },
+            error: function () {
+                alert('webservice error');
+            }
+        });
+        
+
+    };
+
+    $(document).ready(function () {
+        $("#register-form").validate({
+                submitHandler: function () {
+                    if ($('#forever21Id').val() == "") {
+                        alert("Please Check ID")
+                    }
+                    else {
+                        SaveProfile();
+                    }
+                },
+                ignore: "",
+                rules: {
+                    firstname: {
+                        required: true
+                    },
+
+                    lastname: {
+                        required: true
+                    },
+                    email: {
+                        required: true,
+                        email: true
+                    },
+
+                    phoneNo: {
+                        required: true
+                    },
+                    instagramId: {
+                        required: true
+                    },
+
+                    hd_status: {
+                        required: true
+                    },
+                    hd_assignee: {
+                        required: true
+                    },
+                    forever21Id: {
+                        required: true
+                    }
+                },
+
+                // Messages for form validation
+                messages: {
+                    firstname: {
+                        required: 'Please enter your first name'
+                    },
+
+                    lastname: {
+                        required: 'Please enter your last name'
+                    },
+
+                    email: {
+                        required: 'Please enter your email address',
+                        email: 'Please enter a VALID email address'
+                    },
+
+                    phoneNo: {
+                        required: 'Please enter your phone number'
+                    },
+
+                    instagramId: {
+                        required: 'Please enter your Instagram Id'
+                    },
+                    hd_status: {
+                        required: 'Please Select Status'
+                    },
+
+                    hd_assignee: {
+                        required: 'Please Select Assigne'
+                    },
+
+                    forever21Id: {
+                        required: 'Please Check Id of Forever21'
+                    }
+
+                },
+
+            });
+        });
+
+    $(document).ready(function () {
+        InitProfile();
+    });
+
+    function Scope()
+    {
+        var scope = angular.element(document.getElementById("Influencer_Container")).scope();
+        return scope;
+    }
+
+    function RejectProfile() {
+
+        jQuery.support.cors = true;
+        $.ajax({
+            url: '/api/admin/updatestatusinfluencer',
+            type: 'POST',
+            dataType: 'json',
+            data : {
+                USER_EMAIL : $('#hd_rejectuseremail').val(),
+                REJECT : $('#rejectReason').val(),
+                STATUS_CD : "Reject",
+            },
+            success: function (data) {
+                if(data > 0)
+                {
+                    alert("reject success");
+
+                    $('#rejectReason').val('');
+                    $('#hd_rejectuseremail').val('');
+                    $("body, .r_container, .desktop_overlay").removeClass("open");
+                    $('#div_reject_influence').hide();
+
+                    $(function () {
+                        Scope().$apply(function () {
+                            Scope().initialize();
+                        });
+                    });
+                    
+                    //$scope.initialize();
+                    //location.reload();
+                }
+                else
+                {
+                    alert("reject error");
+                }
+            },
+            error: function () {
+                alert('webservice error');
+            }
+        });
+     }
+
+    function InitProfile() {
+        // Assignee Admin을 바인딩
+        jQuery.support.cors = true;
+        $.ajax({
+            url: '/api/admin/activeadmins',
+            type: 'GET',
+            dataType: 'json',
+            success: function (data) {
+
+                $.each(data, function (i, v) {
+                    $("#sel_assignee").append("<option value='" + i +"'>" + v.ADMIN_NAME + "</option>");
+                    $("#dl_assignee").append("<dd onclick=\"fnChangedl('assignee', this, '" + i + "', '" + v.ADMIN_NAME + "'); return false;\"><span>" + v.ADMIN_NAME + "</span></dd>");
+                });
+            },
+            error: function () {
+                alert('error');
+            }
+        });
+    }
+
+    function SaveProfile() {
+        $('.loading').show();
+
+            jQuery.support.cors = true;
+            $.ajax({
+                url: '/api/admin/regist',
+                type: 'POST',
+                dataType: 'json',
+                data : {
+                    USER_EMAIL : $('#email').val(),
+                    STATUS_CD : $('#hd_status').val(),
+                    FIRST_NM : $('#firstname').val(),
+                    LAST_NM : $('#lastname').val(),
+                    PHONE_NO : $('#phoneNo').val(),
+                    INSTAGRAM_ID : $('#instagramId').val(),
+                    FOREVER21_ID: $('#forever21Id').val(),
+                    ADMIN_SEQ : $('#hd_assignee').val(),
+                    CREATE_USER : @LoginUserSeq,
+                },
+                success: function (data) {
+                    if(data > 0)
+                    {
+                        alert("success");
+                       
+                        $('#email').val('');
+                        $('#hd_status').val('');
+                        $('#firstname').val('');
+                        $('#lastname').val('');
+                        $('#phoneNo').val('');
+                        $('#instagramId').val('');
+                        $('#forever21Id').val('');
+                        $('#hd_assignee').val('');
+                        
+                        $("body, .r_container, .desktop_overlay").removeClass("open");
+                        $('#div_add_influencer').hide();
+
+                        $(function () {
+                            Scope().$apply(function () {
+                                Scope().initialize();
+                            });
+                        });
+
+                        // location.reload();
+                    }
+                    else
+                    {
+                        alert("regist error");
+                    }
+                },
+                error: function () {
+                    alert('webservice error');
+                }
+            });
+        }
+</script>

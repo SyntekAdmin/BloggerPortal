@@ -1,0 +1,33 @@
+﻿[v-cloak] {
+    display:none;
+}
+
+.dt-toolbar {
+    border-bottom: 0px solid #ccc;
+    margin-bottom:10px;
+}
+
+.vx-alert{
+    color:#cc021b;
+}
+
+.vx-pink{
+    color:hotpink;
+}
+
+/* vx-table */
+.dt-head-center{
+    text-align:center;
+}
+.dt-body-center{
+    text-align:center;
+}
+
+/* jarviswidget */
+.widget-body.no-padding {
+    border-top: 1px solid #c2c2c2;
+}
+/* 위젯내에서 table 사용시 상단에 6px 마진 제거  */
+table.no-top {
+    margin-top: 0px!important;
+}

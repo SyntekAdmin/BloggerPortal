@@ -1,0 +1,31 @@
+﻿<!-- Right Container S -->
+<div class="desktop_overlay"></div>
+<div class="r_container" ng-controller="PhotoViewAllController" id="PhotoViewAllController">
+    <span class="icon_close"></span>
+    <div class="quick col_s_9_of_10 col_m_9_of_12 col_l_12_of_16 fc">
+        <!-- Right Content S -->
+        <div id="div_viewall">
+            <div class="ttl_header t_bold pb_10 pt_20 "><label id="viewAllProductNm">{{productNm}}</label></div>
+            <p class="pb_10 t_gray" id="viewAllSkuNm">{{skuNm}}</p>
+            <!-- Item Each Photo Grid S -->
+            <div class="container">
+                <div class="row_2 clearfix" id="viewAllItems">
+                    <!-- chang Class row_5 > row_2 -->
+                    <!-- Item S -->
+                    <div class="pi_wrapper" ng-repeat="item in photos">
+                        <div class="p_item">
+                            <div class="tag_container round_tag_rb t_white t_bold"  ng-class="{'bg_pink picked': item.PICKED_DATE_STR !== 'TBD'}">
+                                <span class="t_small" ng-hide="{{item.PICKED_DATE_STR === 'TBD'}}">PICKED</span>
+                            </div>
+                            <p><img ng-src="{{'/admin/items/viewer/' + item.PHOTO_URL}}" src="/resource/images/c_loading.gif"></p>
+                        </div>
+                    </div>
+                    <!-- Item E -->
+                </div>
+            </div>
+            <!-- Item Each Photo Grid E -->
+        </div>
+        <!-- Right Content E -->
+    </div>
+</div>
+<!-- Right Container E -->

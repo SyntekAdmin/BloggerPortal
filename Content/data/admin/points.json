@@ -1,0 +1,48 @@
+[
+  {
+    "LINK_UPLOAD": "2017-03-26",
+    "PHOTO_UPLOAD": "2017-03-25",
+    "REMARK": "Photo Upload (Picked - Slow Item)",
+    "PRODUCT_NAME": "Sleeveless Midnight Top",
+    "EARNED": 10.00,
+    "USER_SEQ" :  1,
+    "USER_NAME": "Lillian Lawson"
+  },
+  {
+    "LINK_UPLOAD": "2017-03-26",
+    "PHOTO_UPLOAD": "2017-03-25",
+    "REMARK": "Photo Upload (Picked - Slow Item)",
+    "PRODUCT_NAME": "Sleeveless Midnight Top",
+    "EARNED": 10.00,
+    "USER_SEQ" :  1,
+    "USER_NAME": "Lillian Lawson"
+  },
+  {
+    "LINK_UPLOAD": "2017-03-25",
+    "PHOTO_UPLOAD": "2017-03-24",
+    "REMARK": "Photo Upload (Picked - Slow Item)",
+    "PRODUCT_NAME": "Sleeveless Midnight Top",
+    "EARNED": 10.00,
+    "USER_SEQ" :  1,
+    "USER_NAME": "Lillian Lawson"
+  },
+  {
+    "LINK_UPLOAD": "2017-03-15",
+    "PHOTO_UPLOAD": "2017-03-10",
+    "REMARK": "Photo Upload (Picked - Slow Item)",
+    "PRODUCT_NAME": "Sleeveless Midnight Top",
+    "EARNED": 10.00,
+    "USER_SEQ" :  1,
+    "USER_NAME": "Lillian Lawson"
+  },
+  {
+    "LINK_UPLOAD": "2017-02-28",
+    "PHOTO_UPLOAD": "2017-02-27",
+    "REMARK": "Photo Upload (Picked - Slow Item)",
+    "PRODUCT_NAME": "Sleeveless Midnight Top",
+    "EARNED": 10.00,
+    "USER_SEQ" :  1,
+    "USER_NAME": "Lillian Lawson"
+  }
+
+]

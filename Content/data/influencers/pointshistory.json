@@ -1,0 +1,38 @@
+[
+  {
+    "point_history_seq": 1,
+    "remark": "Photo Upload (Picked - Slow Item)",
+    "amount": 10.00,
+    "balance": 227.00,
+    "paid_date": "2017-02-25"
+  },
+  {
+    "point_history_seq": 2,
+    "remark": "Photo Upload (Picked - Regular Item)",
+    "amount": 1.00,
+    "balance": 228.00,
+    "paid_date": "2017-02-27"
+  },
+  {
+    "point_history_seq": 3,
+    "remark": "Points Used (Order #12532523)",
+    "amount": -20.00,
+    "balance": 208.00,
+    "paid_date": "2017-03-10"
+  },
+  {
+    "point_history_seq": 4,
+    "remark": "Photo Upload (Picked - Slow Item)",
+    "amount": 10.00,
+    "balance": 218.00,
+    "paid_date": "2017-03-24"
+  },
+  {
+    "point_history_seq": 5,
+    "remark": "Photo Upload",
+    "amount": 1.00,
+    "balance": 219.00,
+    "paid_date": "2017-03-24"
+  }
+
+]

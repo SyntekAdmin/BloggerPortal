@@ -1,0 +1,182 @@
+﻿<script language="javascript" src="~/Scripts/app/Common.js"></script>
+<script language="javascript" src="~/Scripts/app/myinfluencers/ListInfluencer_Biz.js"></script>
+<script language="javascript" src="~/Scripts/app/Pager.js"></script>
+<script language="javascript" src="~/Scripts/app/myinfluencers/ListInfluencer_Ctrl.js"></script>
+<script language="javascript" src="./../resource/js/jquery.val.custom.js"></script>
+
+<div class="col_s_10_of_10 col_m_9_of_12 col_l_13_of_16"  ng-app="forever21App">
+    <div class="nav_top_container txcl nav_content_title">
+        <h1>MY INFLUENCERS</h1>
+    </div>
+    <!-- Cotent S -->
+    <div class="container row pt_10 pb_20" id="Influencer_Container" ng-controller="InfluencerController">
+        <!-- View Option Grid S -->
+        <div class="clearfix">
+            <div class="col_s_10_of_10 col_m_5_of_12 col_l_5_of_16 fr pb_5">
+                <!-- 일반 admin은 influencer 등록이 맞지 않다고 생각 하여 주석 처리. 필요하면 추가-->
+                @*<button class="ws_100 bg_yellow btn_mid qv_slide">ADD NEW INFLUENCER</button>*@
+            </div>
+            <div class="view_grid clearfix m_sortfiler col_s_10_of_10 col_m_6_of_12 pa_0">
+                <div class="col_s_5_of_10 col_m_5_of_12 inline txcl pt_10">
+                    <span class="drop_p row fc" id="btn-sort"  list-option-class>
+                        <span class="s_dropdown arrow_down"><label><a>SORT BY</a></label></span>
+                    </span>
+                    <div id="div-sort" class="drop_c b_gray" ng-model="sortType">
+                        <dl>
+                            <dd><span class="sort_type selected t_pink" data-sort="00" ng-click="fnSortChange()">Sort A to Z</span></dd>
+                            <dd><span class="sort_type" data-sort="01" ng-click="fnSortChange()">Newest</span></dd>
+                            <dd><span class="sort_type" data-sort="02" ng-click="fnSortChange()">StartDate</span></dd>
+                            <dd><span class="sort_type" data-sort="04" ng-click="fnSortChange()">Point(High to Low)</span></dd>
+                            <dd><span class="sort_type" data-sort="05" ng-click="fnSortChange()">Point(Low to High)</span></dd>
+                        </dl>
+                    </div>
+                </div>
+                <div class="col_s_5_of_10 fr txcl show_mobile">
+                    <span class="drop_p row fc">
+                        <span class="s_dropdown arrow_down" list-option-class><label><a>VIEW</a></label></span>
+                    </span>
+                    <div id="div-size" class="drop_c b_gray" ng-model="pageSize2">
+                        <dl>
+                            @*<dd><span class="pagesize" data-pagesize="2" ng-click="fnPageSizeChange()">VIEW 2</span></dd>*@
+                            <dd><span class="pagesize selected t_pink" data-pagesize="10" ng-click="fnPageSizeChange()">VIEW 10</span></dd>
+                            <dd><span class="pagesize" data-pagesize="20" ng-click="fnPageSizeChange()">VIEW 20</span></dd>
+                            <dd><span class="pagesize" data-pagesize="30" ng-click="fnPageSizeChange()">VIEW 30</span></dd>
+                        </dl>
+                    </div>
+                    <input type="number" min="1" max="100" class="form-control" ng-model="pageSize" readonly="readonly" style="display:none;">
+                </div>
+            </div>
+        </div>
+        <!-- View Option Grid E -->
+        <!--  Member Grid S -->
+        <div class="m_list clearfix" id="influencers" ng-cloak>
+            <!-- Item S -->
+            <div class="col_s_10_of_10 col_m_6_of_12 col_l_8_of_16" dir-paginate="meal in meals | itemsPerPage: pageSize" current-page="currentPage" my-repeat-directive>
+                <div class="b_gray">
+
+                    <!-- Item Image S -->
+                    <div class="col_s_3_of_10 col_m_3_of_12 col_l_5_of_16 pt_10 pl_10 pb_10 txlc">
+                        <div class="col_s_8_of_10 col_m_10_of_12 col_l_11_of_16 fc ma_0 inline">
+                            <img ng-src="{{meal.PHOTO_URL}}">
+                        </div>
+                    </div>
+                    <!-- Item Image E -->
+                    <!-- Item Info S -->
+                    <div class="col_s_7_of_10 col_m_9_of_12 col_l_11_of_16 pt_10 pr_10 pb_10">
+                        <div class="pb_5 clearfix">
+                            <div class="fl">
+                                <p class="pt_10 pb_10 t_mid t_bold">{{meal.USER_NAME}}</p>
+                            </div>
+                            <div class="fr">
+                                <div ng-switch on=meal.NEW_USER>
+                                    <div ng-switch-when="1">
+                                        <div class="tag_container round_tag t_black t_bold new p_relative">
+                                            <span class="t_small">NEW</span>
+                                        </div>
+                                    </div>
+                                    <div ng-switch-default></div>
+                                </div>    
+                            </div>
+                        </div>
+                        <div class="bt_gray pt_5">
+                            <table class="ws_100 t_small">
+                                <tbody>
+                                    <tr>
+                                        <th>Applied on</th>
+                                        <td>{{meal.APPLIED_DATE | date : "MM/dd/yyyy"}}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Email</th>
+                                        <td>{{meal.USER_EMAIL}}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Instagram</th>
+                                        <td><span class="underline">{{meal.INSTAGRAM_ID}}</span></td>
+                                    </tr>
+                                    <tr>
+                                        <th>Status</th>
+                                        <td>
+                                            <div class="select_container_in">
+                                                <div class="checkout show_mobile">
+                                                    <select ng-change="fnChangeStatus($index, this)" ng-model="meal.STATUS_CD">
+                                                        @*<option value="{{option.value}}" ng-repeat="option in status" ng-selected="(meal.STATUS_CD | uppercase) === (option.value| uppercase)">{{option.text}}</option>*@
+                                                        <option value="{{option.value}}" ng-repeat="option in status">{{option.text}}</option>
+                                                    </select>
+                                                </div>
+                                                <div class="col_m_12_of_12 col_l_16_of_16 txl hide_mobile">
+                                                    <span class="drop_p" list-option-class>
+                                                        <span class="s_dropdown arrow_down"><label><a ng-bind="meal.STATUS_CD">Select</a></label></span>
+                                                        <input type="hidden" ng-bind="meal.STATUS_CD" />
+                                                    </span>
+                                                    <div class="drop_c b_gray">
+                                                        <dl>
+                                                            <dd ng-click="fnChangeStatusdl(meal.USER_EMAIL, option.value)" ng-class="{'t_pink':(meal.STATUS_CD | uppercase) === (option.value| uppercase)}" ng-repeat="option in status"><span>{{option.text}}</span></dd>
+                                                        </dl>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <!-- Item Info E -->
+                    <!-- Item Button S -->
+                    <div class="bt_gray pa_10 clearfix">
+                        <div class="fl t_small t_pink t_bold pt_5">
+                            POINTS BALANCE : <span>{{meal.BALANCE}}</span>
+                        </div>
+                        <div class="fr">
+                            <div ng-switch on="meal.STATUS_CD | uppercase">
+                                <div ng-switch-when="DELETE"></div>
+                                <div ng-switch-default>
+                                    <span class="vm pl_10">
+                                        <span class="icon_delete p_relative fc" ng-click="fnDelete(meal.USER_EMAIL)"></span>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Item Button S -->
+                </div>
+            </div>
+            <!-- Item E -->
+
+        </div>
+        <!--  Member Grid E -->
+        <!-- View Option Grid S -->
+        <div class="view_grid txc">
+            <!-- Pager Bottom S -->
+            <dir-pagination-controls id="bottom-pager" class="inline s_page" boundary-links="true" on-page-change="pageChangeHandler(newPageNumber)"></dir-pagination-controls>
+            <!-- Pager Bottom E -->
+        </div>
+        <!-- View Option Grid E -->
+    </div>
+    <!-- Cotent E -->
+</div>
+
+
+<script type="text/javascript">
+    
+    var o_LoginUserSeq = @LoginUserSeq;
+
+    // 좌측 메뉴 Active
+    //$("#m_influencers").addClass('active');
+    fnActiveMenu("m_influencers", "My Influencers");
+    $("#m_m_influencers").addClass('active');
+
+    
+    jQuery(document).ready(function(e){ // Temp Script
+        $('button.qv_slide').click(function(e){
+            $('#div_add_influencer').show();
+        })
+        $('dd.qv_slide').click(function(e){
+            $('#div_reject_influence').show();
+        })
+        $(".r_container .icon_close, .desktop_overlay").on("click",function() {
+            $('#div_add_influencer, #div_reject_influence').hide();
+        });
+    });
+
+</script>

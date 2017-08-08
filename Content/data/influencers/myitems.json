@@ -1,0 +1,54 @@
+[
+  {
+    "myitem_seq": 1,
+    "order_no": "67154804",
+    "ordered_date": "2/25/2017",
+    "shipped_date": "2/25/2017",
+    "product_no": "100",
+    "approved_date": "",
+    "post_link": "",
+    "product_name": "Boxy Raw-Cut Top",
+    "item_options": "Bubble Gum / M",
+    "product_image": "http://img.forever21.co.kr/images/default_330/00103925-04.jpg",
+    "first_upload": "",
+    "last_upload": "",
+    "photos": 0,
+    "earned": 0.00,
+    "picked": 0
+  },
+  {
+    "myitem_seq": 1,
+    "order_no": "67154804",
+    "ordered_date": "2/25/2017",
+    "shipped_date": "2/25/2017",
+    "product_no": "101",
+    "approved_date": "",
+    "post_link": "",
+    "product_name": "Ruffled Top",
+    "item_options": "Coral / S",
+    "product_image": "http://img.forever21.co.kr/images/default_330/00109165-03.jpg",
+    "first_upload": "",
+    "last_upload": "",
+    "photos": 0,
+    "earned": 0.00,
+    "picked": 0
+  },
+  {
+    "myitem_seq": 1,
+    "order_no": "67154804",
+    "ordered_date": "2/25/2017",
+    "shipped_date": "2/25/2017",
+    "product_no": "102",
+    "approved_date": "",
+    "post_link": "https://www.instagram.com/p/BTS4Hkkjv4S",
+    "product_name": "Off-the-Shoulder Jersey Dress",
+    "item_options": "Red / S",
+    "product_image": "http://img.forever21.co.kr/images/default_330/00106236-01.jpg",
+    "first_upload": "2/07/2017",
+    "last_upload": "2/08/2017",
+    "photos": 3,
+    "earned": 0.00,
+    "picked": 0
+  }
+
+]
